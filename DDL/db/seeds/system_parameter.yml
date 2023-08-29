@@ -1,0 +1,61 @@
+test:
+- sys_param:
+    feature: arc
+    parameter: environment
+    value: test
+    description: Environment
+- sys_param:
+    feature: arc
+    parameter: backup_root
+    value: D:\MSSQL\Data_archive
+    description: 'data archive bcp backup root path'
+- sys_param:
+    feature: arc
+    parameter: backup_wait_delay
+    value: 00:00:05
+    description: 'Catch up delay seconds for each bcp execution date loop'
+- sys_param:
+    feature: arc
+    parameter: delete_rows_pre_batch
+    value: 200
+    description: 'Number of records delete pre batch'
+- sys_param:
+    feature: arc
+    parameter: delete_wait_delay
+    value: 00:00:05
+    description: 'Catch up delay seconds for each delete execution date loop'
+- sys_param:
+    feature: sv
+    parameter: sv_root
+    value: D:\sv_report
+    description: 'sv upload root path'
+- sys_param:
+    feature: sv
+    parameter: ftp_host
+    value: mo-stg-ftp-vapp01.rnd.laxino.com
+    description: 'ftp server hostname'
+- sys_param:
+    feature: sv
+    parameter: ftp_user
+    value: ssrs
+    description: 'ftp user'
+- sys_param:
+    feature: sv
+    parameter: ftp_passwd
+    value: '0x4363313233343536'
+    description: 'ftp user password'
+- sys_param:
+    feature: sv
+    parameter: ftp_encrypt_phrase
+    value: maytheforcebewithyou
+    description: 'ftp user password encrypt decrypt pass phrase'
+- sys_param:
+    feature: sv
+    parameter: ftp_remote_root
+    value: /sv_files
+    description: 'ftp remote root path'
+- sys_param:
+    feature: deploy_package
+    parameter: deploy_path
+    value: D:\ssis_deployment_ispac
+    description: 'Deploy the service package path'

@@ -1,0 +1,302 @@
+development:
+- arc_database:
+    id: 1
+    name: aino_ndm_development
+    state: 0
+- arc_database:
+    id: 2
+    name: aino_nldm_development
+    state: 0
+- arc_database:
+    id: 3
+    name: anubis_dm_development
+    state: 0
+- arc_database:
+    id: 4
+    name: anubis_ldm_development
+    state: 0
+- arc_database:
+    id: 5
+    name: ssis_dmms_development
+    state: 0
+- arc_database:
+    id: 6
+    name: ssis_ldmms_development
+    state: 0
+- arc_database:
+    id: 7
+    name: ssis_utils_development
+    state: 0
+
+test:
+- arc_database:
+    id: 1
+    name: aino_ndm_test
+    state: 0
+- arc_database:
+    id: 2
+    name: aino_nldm_test
+    state: 0
+- arc_database:
+    id: 3
+    name: anubis_dm_test
+    state: 0
+- arc_database:
+    id: 4
+    name: anubis_ldm_test
+    state: 0
+- arc_database:
+    id: 5
+    name: ssis_dmms_test
+    state: 0
+- arc_database:
+    id: 6
+    name: ssis_ldmms_test
+    state: 0
+- arc_database:
+    id: 7
+    name: ssis_utils_test
+    state: 0
+
+staging:
+- arc_database:
+    id: 1
+    name: aino_ndm_staging
+    state: 0
+- arc_database:
+    id: 2
+    name: aino_nldm_staging
+    state: 0
+- arc_database:
+    id: 3
+    name: anubis_dm_staging
+    state: 0
+- arc_database:
+    id: 4
+    name: anubis_ldm_staging
+    state: 0
+- arc_database:
+    id: 5
+    name: ssis_dmms_staging
+    state: 0
+- arc_database:
+    id: 6
+    name: ssis_ldmms_staging
+    state: 0
+- arc_database:
+    id: 7
+    name: ssis_utils_staging
+    state: 0
+
+staging0:
+- arc_database:
+    id: 1
+    name: aino_ndm_staging0
+    state: 0
+- arc_database:
+    id: 2
+    name: aino_nldm_staging0
+    state: 0
+- arc_database:
+    id: 3
+    name: anubis_dm_staging0
+    state: 0
+- arc_database:
+    id: 4
+    name: anubis_ldm_staging0
+    state: 0
+- arc_database:
+    id: 5
+    name: ssis_dmms_staging0
+    state: 0
+- arc_database:
+    id: 6
+    name: ssis_ldmms_staging0
+    state: 0
+- arc_database:
+    id: 7
+    name: ssis_utils_staging0
+    state: 0
+
+simulation:
+- arc_database:
+    id: 1
+    name: aino_ndm_simulation
+    state: 0
+- arc_database:
+    id: 2
+    name: aino_nldm_simulation
+    state: 0
+- arc_database:
+    id: 3
+    name: anubis_dm_simulation
+    state: 0
+- arc_database:
+    id: 4
+    name: anubis_ldm_simulation
+    state: 0
+- arc_database:
+    id: 5
+    name: ssis_dmms_simulation
+    state: 0
+- arc_database:
+    id: 6
+    name: ssis_ldmms_simulation
+    state: 0
+- arc_database:
+    id: 7
+    name: ssis_utils_simulation
+    state: 0
+
+
+sandbox0:
+- arc_database:
+    id: 1
+    name: aino_ndm_sandbox
+    state: 0
+- arc_database:
+    id: 2
+    name: aino_nldm_sandbox
+    state: 0
+- arc_database:
+    id: 3
+    name: anubis_dm_sandbox
+    state: 0
+- arc_database:
+    id: 4
+    name: anubis_ldm_sandbox
+    state: 0
+- arc_database:
+    id: 5
+    name: ssis_dmms_sandbox
+    state: 0
+- arc_database:
+    id: 6
+    name: ssis_ldmms_sandbox
+    state: 0
+- arc_database:
+    id: 7
+    name: ssis_utils_sandbox0
+    state: 0
+
+
+production0:
+- arc_database:
+    id: 1
+    name: aino_ndm_production
+    state: 0
+- arc_database:
+    id: 2
+    name: aino_nldm_production
+    state: 0
+- arc_database:
+    id: 3
+    name: anubis_dm_production
+    state: 0
+- arc_database:
+    id: 4
+    name: anubis_ldm_production
+    state: 0
+- arc_database:
+    id: 5
+    name: ssis_dmms_production
+    state: 0
+- arc_database:
+    id: 6
+    name: ssis_ldmms_production
+    state: 0
+- arc_database:
+    id: 7
+    name: ssis_utils_production0
+    state: 0
+
+sandbox3:
+- arc_database:
+    id: 1
+    name: aino_ndm_sandbox
+    state: 0
+- arc_database:
+    id: 2
+    name: aino_nldm_sandbox
+    state: 0
+- arc_database:
+    id: 3
+    name: anubis_dm_sandbox
+    state: 0
+- arc_database:
+    id: 4
+    name: anubis_ldm_sandbox
+    state: 0
+- arc_database:
+    id: 5
+    name: ssis_dmms_sandbox
+    state: 0
+- arc_database:
+    id: 6
+    name: ssis_ldmms_sandbox
+    state: 0
+- arc_database:
+    id: 7
+    name: ssis_utils_sandbox3
+    state: 0
+
+
+production3:
+- arc_database:
+    id: 1
+    name: aino_ndm_production
+    state: 0
+- arc_database:
+    id: 2
+    name: aino_nldm_production
+    state: 0
+- arc_database:
+    id: 3
+    name: anubis_dm_production
+    state: 0
+- arc_database:
+    id: 4
+    name: anubis_ldm_production
+    state: 0
+- arc_database:
+    id: 5
+    name: ssis_dmms_production
+    state: 0
+- arc_database:
+    id: 6
+    name: ssis_ldmms_production
+    state: 0
+- arc_database:
+    id: 7
+    name: ssis_utils_production3
+    state: 0
+
+production5:
+- arc_database:
+    id: 1
+    name: aino_ndm_production
+    state: 0
+- arc_database:
+    id: 2
+    name: aino_nldm_production
+    state: 0
+- arc_database:
+    id: 3
+    name: anubis_dm_production
+    state: 0
+- arc_database:
+    id: 4
+    name: anubis_ldm_production
+    state: 0
+- arc_database:
+    id: 5
+    name: ssis_dmms_production
+    state: 0
+- arc_database:
+    id: 6
+    name: ssis_ldmms_production
+    state: 0
+- arc_database:
+    id: 7
+    name: ssis_utils_production5
+    state: 0

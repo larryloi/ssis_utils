@@ -1,0 +1,37 @@
+development:
+- etl_db_map:
+    id: 1
+    network_code_id: 101
+    description: anubis_dm source
+    source_host: STG0-BI-DB01
+    source_db: anubis_dm_hystaging
+    source_dsn: anubis_dm_hystaging
+    dest_host: STG0-BI-DB01
+    dest_db: anubis_dm_hystaging
+- etl_db_map:
+    id: 2
+    network_code_id: 101
+    description: aino_nsta source
+    source_host: hq-stg-nsta-vdb01.laxino.local
+    source_db: aino_nsta_staging
+    source_dsn: aino_nsta_hystaging
+    dest_host: STG0-BI-DB01
+    dest_db: anubis_dm_hystaging
+- etl_db_map:
+    id: 3
+    network_code_id: 101
+    description: andes_cdmms source
+    source_host: hq-stg-generic-db01.laxino.local
+    source_db: andes_cdmms_staging
+    source_dsn: andes_cdmms_hystaging
+    dest_host: STG0-BI-DB01
+    dest_db: anubis_dm_hystaging
+- etl_db_map:
+    id: 4
+    network_code_id: 101
+    description: davis_smh source
+    source_host: hq-stg-hms-vdb01.laxino.local
+    source_db: davis_smh_staging
+    source_dsn: davis_smh_hystaging
+    dest_host: STG0-BI-DB01
+    dest_db: anubis_dm_hystaging

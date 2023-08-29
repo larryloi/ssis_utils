@@ -1,0 +1,924 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12:00:00 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName=""
+  DTS:CreatorName=""
+  DTS:DTSID="{6D0DB665-7C6E-410A-8277-7BC10AC3F338}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="3076"
+  DTS:ObjectName="etl_delay_alert_by_licensee"
+  DTS:PackageType="5"
+  DTS:VersionBuild="186"
+  DTS:VersionGUID="{4F1984A6-C661-4296-8FF6-0E2A17AC81CB}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{31692821-8D0F-4976-A0E0-B65A25ECF2E2}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="current_delay_count">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{090A56D2-453C-40B8-81A2-ED6DC7D18809}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="delay_alert_max_count">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DD767152-61FB-450C-B360-8CDD2417EBE3}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="delay_alert_recipients">
+      <DTS:VariableValue
+        DTS:DataType="8">noreply@laxino.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A73DFD2C-AF7B-4034-8E7D-B62FDE0DC231}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="delay_alert_resolved_severity">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{56D60A92-40D6-4914-B72A-DDC078898ED9}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="delay_alert_resolved_subject">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B35E2F10-B3CF-4649-9151-47E958FC852C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="delay_alert_severity">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3852DA13-B243-4A55-9DC3-D2A3DCD79864}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="delay_alert_subject">
+      <DTS:VariableValue
+        DTS:DataType="8">---</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B134FF63-0703-4B3F-AE97-FA3D18A3EE2A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="environment">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BCDA3D88-47BF-4681-855D-DD347857EC57}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="etl_table_delay_logs_duration_days">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C718D2B1-561D-4CE9-AF45-D23145954D62}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="etl_table_map_delay_count">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{54E3D50F-2419-4A60-9E2B-B1DFA0D32CDE}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="last_data_synced_at">
+      <DTS:VariableValue
+        DTS:DataType="7">1/1/2009</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5825FD2D-61D7-4769-84D0-505E54DCBF52}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="resolved_table_count">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9F7C9D26-BC0B-4484-B8F4-2E7397798CB9}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="service_name">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E7D9420E-E1C7-4807-B4A1-471517585E0E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="sql_mail_profile_name">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Housekeep etl_table_delay_logs"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{64A0E317-C51B-4895-9FA0-30D7C98AFA43}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Housekeep etl_table_delay_logs"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{6EC51AD9-E24A-43BF-9C7C-7BA81E9FF76B}"
+          SQLTask:SqlStatementSource="DELETE FROM etl_table_delay_logs &#xA;WHERE collected_at &lt; DATEADD(DAY, ?, GETUTCDATE())" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::etl_table_delay_logs_duration_days"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Insert into etl_table_delay_logs"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B86C0B31-39C3-4A3D-8783-AABF1B61BCF7}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Insert into etl_table_delay_logs"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{6EC51AD9-E24A-43BF-9C7C-7BA81E9FF76B}"
+          SQLTask:SqlStatementSource="INSERT INTO etl_table_delay_logs&#xA;    (etl_table_map_id, &#xA;    etl_table_licensee_map_id, &#xA;    report_code, &#xA;    report_acceptable_delay_mins, &#xA;    table_name, licensee_id, &#xA;    data_updated_to, collected_at)&#xA;SELECT &#xA;    etl_table_map_id, &#xA;    etl_table_licensee_map_id, &#xA;    report_code, &#xA;    report_acceptable_delay_mins, &#xA;    table_name, licensee_id, &#xA;    data_updated_to, collected_at&#xA;FROM etl_table_delay_tmp (NOLOCK)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{18F6BC2C-0CF5-4043-9ACF-A228DA41CF07}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Count Resolved tables"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{C1DB9FE3-EDEB-4891-B3F4-46E44031F07C}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Count Resolved tables"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{6EC51AD9-E24A-43BF-9C7C-7BA81E9FF76B}"
+              SQLTask:SqlStatementSource="SELECT COUNT(*) FROM (&#xA;SELECT &#xA;    a.l_etl_table_map_id AS etl_table_map_id, &#xA;    ISNULL(CAST(a.l_etl_table_licensee_map_id AS NVARCHAR(50)),'N/A') AS etl_table_licensee_map_id,&#xA;    a.l_table_name AS table_name,&#xA;    'N/A' AS licensee_id&#xA;    FROM &#xA;(&#xA;SELECT t.etl_table_map_id AS t_etl_table_map_id, t.etl_table_licensee_map_id AS t_etl_table_licensee_map_id, t.report_code AS t_report_code, t.table_name AS t_table_name&#xA;      ,l.etl_table_map_id AS l_etl_table_map_id, l.etl_table_licensee_map_id AS l_etl_table_licensee_map_id, l.report_code AS l_report_code, l.table_name AS l_table_name&#xA;FROM etl_table_delay_tmp t (NOLOCK)&#xA;RIGHT JOIN (SELECT etl_table_map_id, etl_table_licensee_map_id, report_code, table_name, licensee_id FROM etl_table_delay_logs (NOLOCK) WHERE collected_at = (SELECT MAX(collected_at) FROM etl_table_delay_logs (NOLOCK))) l &#xA;    ON t.etl_table_map_id = l.etl_table_map_id &#xA;    AND t.report_code = l.report_code&#xA;    AND t.table_name = l.table_name&#xA;WHERE l.licensee_id IS NULL AND l.report_code IS NOT NULL&#xA;GROUP BY t.etl_table_map_id, t.etl_table_licensee_map_id, t.report_code, t.table_name&#xA;        ,l.etl_table_map_id, l.etl_table_licensee_map_id, l.report_code, l.table_name&#xA;HAVING t.etl_table_map_id IS NULL&#xA;UNION&#xA;SELECT t.etl_table_map_id AS t_etl_table_map_id, t.etl_table_licensee_map_id AS t_etl_table_licensee_map_id, t.report_code AS t_report_code, t.table_name AS t_table_name&#xA;      ,l.etl_table_map_id AS l_etl_table_map_id, l.etl_table_licensee_map_id AS l_etl_table_licensee_map_id, l.report_code AS l_report_code, l.table_name AS table_name&#xA;FROM etl_table_delay_tmp t (NOLOCK)&#xA;RIGHT JOIN (SELECT etl_table_map_id, etl_table_licensee_map_id, report_code, table_name, licensee_id FROM etl_table_delay_logs (NOLOCK) WHERE collected_at = (SELECT MAX(collected_at) FROM etl_table_delay_logs (NOLOCK))) l &#xA;    ON t.etl_table_map_id = l.etl_table_map_id &#xA;    AND t.table_name = l.table_name&#xA;WHERE l.licensee_id IS NULL AND l.report_code IS NULL&#xA;GROUP BY t.etl_table_map_id, t.etl_table_licensee_map_id, t.report_code, t.table_name&#xA;        ,l.etl_table_map_id, l.etl_table_licensee_map_id, l.report_code, l.table_name&#xA;HAVING t.etl_table_map_id IS NULL) a&#xA;GROUP BY    a.l_etl_table_map_id, &#xA;    ISNULL(CAST(a.l_etl_table_licensee_map_id AS NVARCHAR(50)),'N/A') ,&#xA;    a.l_table_name &#xA;-- Resolved tables list by licensees&#xA;UNION&#xA;SELECT &#xA;    b.l_etl_table_map_id AS etl_table_map_id, &#xA;    ISNULL(CAST(b.l_etl_table_licensee_map_id AS NVARCHAR(50)),'N/A') AS etl_table_licensee_map_id,&#xA;    b.l_table_name AS table_name,&#xA;    ISNULL(CAST(b.l_licensee_id AS  NVARCHAR(50)) ,'N/A') AS licensee_id&#xA;    FROM &#xA;(&#xA;SELECT t.etl_table_map_id AS t_etl_table_map_id, t.etl_table_licensee_map_id AS t_etl_table_licensee_map_id, t.report_code AS t_report_code, t.table_name AS t_table_name, t.licensee_id t_licensee_id&#xA;      ,l.etl_table_map_id AS l_etl_table_map_id, l.etl_table_licensee_map_id AS l_etl_table_licensee_map_id, l.report_code AS l_report_code, l.table_name AS l_table_name, l.licensee_id AS l_licensee_id&#xA;FROM etl_table_delay_tmp t (NOLOCK)&#xA;RIGHT JOIN (SELECT etl_table_map_id, etl_table_licensee_map_id, report_code, table_name, licensee_id FROM etl_table_delay_logs (NOLOCK) WHERE collected_at = (SELECT MAX(collected_at) FROM etl_table_delay_logs (NOLOCK)) AND licensee_id IS NOT NULL) l &#xA;    ON t.etl_table_map_id = l.etl_table_map_id &#xA;&#x9;AND t.etl_table_licensee_map_id = l.etl_table_licensee_map_id&#xA;&#x9;AND t.report_code = l.report_code&#xA;&#x9;AND t.table_name = l.table_name&#xA;&#x9;AND t.licensee_id = l.licensee_id&#xA;WHERE l.licensee_id IS NOT NULL AND l.report_code IS NOT NULL&#xA;GROUP BY t.etl_table_map_id, t.etl_table_licensee_map_id, t.report_code, t.table_name, t.licensee_id&#xA;        ,l.etl_table_map_id, l.etl_table_licensee_map_id, l.report_code, l.table_name, l.licensee_id&#xA;HAVING t.etl_table_map_id IS NULL&#xA;UNION&#xA;SELECT t.etl_table_map_id AS t_etl_table_map_id, t.etl_table_licensee_map_id AS t_etl_table_licensee_map_id, t.report_code AS t_report_code, t.table_name AS t_table_name, t.licensee_id t_licensee_id&#xA;      ,l.etl_table_map_id AS l_etl_table_map_id, l.etl_table_licensee_map_id AS l_etl_table_licensee_map_id, l.report_code AS l_report_code, l.table_name AS table_name, l.licensee_id AS l_licensee_id&#xA;FROM etl_table_delay_tmp t (NOLOCK)&#xA;RIGHT JOIN (SELECT etl_table_map_id, etl_table_licensee_map_id, report_code, table_name, licensee_id FROM etl_table_delay_logs(NOLOCK)  WHERE collected_at = (SELECT MAX(collected_at) FROM etl_table_delay_logs (NOLOCK)) AND licensee_id IS NOT NULL) l &#xA;    ON t.etl_table_map_id = l.etl_table_map_id &#xA;&#x9;AND t.etl_table_licensee_map_id = l.etl_table_licensee_map_id&#xA;&#x9;AND t.table_name = l.table_name&#xA;&#x9;AND t.licensee_id = l.licensee_id&#xA;WHERE l.licensee_id IS NOT NULL AND l.report_code IS NULL&#xA;GROUP BY t.etl_table_map_id, t.etl_table_licensee_map_id, t.report_code, t.table_name, t.licensee_id&#xA;        ,l.etl_table_map_id, l.etl_table_licensee_map_id, l.report_code, l.table_name, l.licensee_id&#xA;HAVING t.etl_table_map_id IS NULL) b&#xA;GROUP BY     b.l_etl_table_map_id , &#xA;    ISNULL(CAST(b.l_etl_table_licensee_map_id AS NVARCHAR(50)),'N/A'),&#xA;    b.l_table_name ,&#xA;    ISNULL(CAST(b.l_licensee_id AS  NVARCHAR(50)) ,'N/A') ) c"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::resolved_table_count" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Reset delay counter for resolved jobs"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{1193B154-63C9-4EBF-9519-37A4F0E70A1C}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Reset delay counter for resolved jobs"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{6EC51AD9-E24A-43BF-9C7C-7BA81E9FF76B}"
+              SQLTask:SqlStatementSource="DECLARE @current_delay_count INT&#xA;&#xA;SET @current_delay_count = ?;&#xA;&#xA;UPDATE etl_table_maps SET delay_counter = 0 WHERE id IN (&#xA;SELECT DISTINCT a.l_etl_table_map_id FROM (&#xA;SELECT t.etl_table_map_id AS t_etl_table_map_id, t.etl_table_licensee_map_id AS t_etl_table_licensee_map_id, t.report_code AS t_report_code, t.table_name AS t_table_name&#xA;      ,l.etl_table_map_id AS l_etl_table_map_id, l.etl_table_licensee_map_id AS l_etl_table_licensee_map_id, l.report_code AS l_report_code, l.table_name AS l_table_name&#xA;FROM etl_table_delay_tmp t (NOLOCK)&#xA;RIGHT JOIN (SELECT etl_table_map_id, etl_table_licensee_map_id, report_code, table_name, licensee_id FROM etl_table_delay_logs (NOLOCK) WHERE collected_at = (SELECT MAX(collected_at) FROM etl_table_delay_logs (NOLOCK))) l &#xA;    ON t.etl_table_map_id = l.etl_table_map_id &#xA;&#x9;AND t.table_name = l.table_name&#xA;WHERE l.licensee_id IS NULL&#xA;GROUP BY t.etl_table_map_id, t.etl_table_licensee_map_id, t.report_code, t.table_name&#xA;        ,l.etl_table_map_id, l.etl_table_licensee_map_id, l.report_code, l.table_name&#xA;HAVING t.etl_table_map_id IS NULL&#xA;) a GROUP BY a.l_etl_table_map_id );&#xA;&#xA;UPDATE etl_table_licensee_maps SET delay_counter = 0 WHERE id IN (&#xA;SELECT DISTINCT a.l_etl_table_licensee_map_id FROM (&#xA;SELECT t.etl_table_map_id AS t_etl_table_map_id, t.etl_table_licensee_map_id AS t_etl_table_licensee_map_id, t.report_code AS t_report_code, t.table_name AS t_table_name, t.licensee_id t_licensee_id&#xA;      ,l.etl_table_map_id AS l_etl_table_map_id, l.etl_table_licensee_map_id AS l_etl_table_licensee_map_id, l.report_code AS l_report_code, l.table_name AS l_table_name, l.licensee_id AS l_licensee_id&#xA;FROM etl_table_delay_tmp t (NOLOCK)&#xA;RIGHT JOIN (SELECT etl_table_map_id, etl_table_licensee_map_id, report_code, table_name, licensee_id FROM etl_table_delay_logs (NOLOCK) WHERE collected_at = (SELECT MAX(collected_at) FROM etl_table_delay_logs (NOLOCK)) AND licensee_id IS NOT NULL) l &#xA;    ON t.etl_table_map_id = l.etl_table_map_id &#xA;&#x9;AND t.etl_table_licensee_map_id = l.etl_table_licensee_map_id&#xA;&#x9;AND t.table_name = l.table_name&#xA;&#x9;AND t.licensee_id = l.licensee_id&#xA;WHERE l.licensee_id IS NOT NULL &#xA;GROUP BY t.etl_table_map_id, t.etl_table_licensee_map_id, t.report_code, t.table_name, t.licensee_id&#xA;        ,l.etl_table_map_id, l.etl_table_licensee_map_id, l.report_code, l.table_name, l.licensee_id&#xA;HAVING t.etl_table_map_id IS NULL&#xA;) a GROUP BY a.l_etl_table_licensee_map_id) ;&#xA;&#xA;IF @current_delay_count = 0&#xA;BEGIN&#xA;   UPDATE etl_table_maps SET delay_counter = 0;&#xA;   UPDATE etl_table_licensee_maps SET delay_counter = 0;&#xA;END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::current_delay_count"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Send resolve email"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{C4E73939-E9B9-49D9-A602-DFAAE9037303}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send resolve email"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{6EC51AD9-E24A-43BF-9C7C-7BA81E9FF76B}"
+              SQLTask:SqlStatementSource="&#xA;DECLARE &#xA;&#xA;&#xA;@severity NVARCHAR(50) = ?,&#xA;@service NVARCHAR(85) = ?,&#xA;@env NVARCHAR(10) = ?,&#xA;@subject_text NVARCHAR(255) = ?,&#xA;@sql_mail_profile_name NVARCHAR(85) = ?,&#xA;@recipient_list NVARCHAR(512) = ?,&#xA;@current_delay_count INT = ?,&#xA;@EmailSubject varchar(100),&#xA;@TextTitle varchar(500),&#xA;@TableHTML nvarchar(max),&#xA;@TableHTML0 nvarchar(max),&#xA;@TableHTML1 nvarchar(max),&#xA;@TableHTML2 nvarchar(max),&#xA;@TableHTML3 nvarchar(max),&#xA;@TableHTML4 nvarchar(max),&#xA;@Body nvarchar(max),&#xA;@Body_resolved_tables nvarchar(max),&#xA;@Body_resolved_reports nvarchar(max),&#xA;@local_time_zone_int INT,&#xA;@local_time_zone_str nvarchar(5);&#xA;&#xA;SELECT @local_time_zone_str = value FROM etl_parameters WHERE parameter='local_time_zone';&#xA;SELECT @local_time_zone_int = CAST(@local_time_zone_str AS INT);&#xA;&#xA;-- xp_regread is UNABLE TO execute by public by default.&#xA;--DECLARE @Domain varchar(100), @key varchar(100)&#xA;--SET @key = 'SYSTEM\ControlSet001\Services\Tcpip\Parameters\'&#xA;--EXEC master..xp_regread @rootkey='HKEY_LOCAL_MACHINE', @key=@key,@value_name='Domain',@value=@Domain OUTPUT &#xA;&#xA;&#xA;SET @EmailSubject = '[' + @severity + '][' + @service + '][' + @env + '] ' + @subject_text&#xA;--SET @TextTitle = 'delay alert ' + CAST(@most_recent_hours AS NVARCHAR) + ' Hours and avg elapsed time over ' + CAST(@avg_elapsed_sec_threshold AS NVARCHAR) + ' seconds.'&#xA;&#xA;SET @TableHTML0 =&#xA;'&lt;html&gt;'+&#xA;'&lt;head&gt;&lt;style&gt;'+&#xA;-- Data cells styles / font size etc&#xA;'td {border:1px solid #ddd;padding-left:5px;padding-right:5px;padding-top:1px;padding-bottom:1px;font-size:10pt}'+&#xA;'&lt;/style&gt;&lt;/head&gt;'+&#xA;'&lt;body&gt;'+&#xA;-- TextTitle style&#xA;'&lt;div style=&quot;margin-top:5px; margin-left:15px; margin-bottom:5px; font-size:12pt; font-family:calibri;&quot;&gt;' + 'Report Detail: ' +&#xA;'&lt;div style=&quot;margin-top:5px; margin-left:15px; margin-bottom:5px; font-size:12pt; font-family:calibri;&quot;&gt;' + 'Severity:    ' + @severity +'&lt;/div&gt;' +&#xA;--'&lt;div style=&quot;margin-top:5px; margin-left:15px; margin-bottom:5px; font-size:12pt; font-family:calibri;&quot;&gt;' + 'Host:        ' + @@servername + '.'+convert(varchar(100),@Domain) +'&lt;/div&gt;' +&#xA;'&lt;div style=&quot;margin-top:5px; margin-left:15px; margin-bottom:5px; font-size:12pt; font-family:calibri;&quot;&gt;' + 'Host:        ' + @@servername +'&lt;/div&gt;' +&#xA;'&lt;div style=&quot;margin-top:5px; margin-left:15px; margin-bottom:5px; font-size:12pt; font-family:calibri;&quot;&gt;' + 'Service:     ' + @service +'&lt;/div&gt;' +&#xA;'&lt;div style=&quot;margin-top:5px; margin-left:15px; margin-bottom:5px; font-size:12pt; font-family:calibri;&quot;&gt;' + 'Environment: ' + @env +'&lt;/div&gt;' +&#xA;'&lt;div style=&quot;margin-top:5px; margin-left:15px; margin-bottom:5px; font-size:12pt; font-family:calibri;&quot;&gt;' + 'Detected at: ' + CONVERT(CHAR(19), GETDATE(), 120) + ' ' + @local_time_zone_str + '00' +'&lt;/div&gt;' +&#xA;'&lt;div style=&quot;margin-top:5px; margin-left:15px; margin-bottom:20px; font-size:12pt; font-family:calibri;&quot;&gt;' + '===============================================================================' +'&lt;/div&gt;' +&#xA;'&lt;/tr&gt;&lt;/div&gt;'&#xA;&#xA;&#xA;&#xA;SET @TableHTML2 =&#xA;'&lt;html&gt;'+&#xA;'&lt;head&gt;&lt;style&gt;'+&#xA;-- Data cells styles / font size etc&#xA;'td {border:1px solid #ddd;padding-left:5px;padding-right:5px;padding-top:1px;padding-bottom:1px;font-size:10pt}'+&#xA;'&lt;/style&gt;&lt;/head&gt;'+&#xA;'&lt;body&gt;'+&#xA;'&lt;div style=&quot;margin-top:5px; margin-left:15px; margin-bottom:5px; font-size:12pt; font-family:calibri;&quot;&gt;' + 'Resolved Tables ' +'&lt;/div&gt;' +&#xA;--'&lt;div style=&quot;margin-top:5px; margin-left:15px; margin-bottom:5px; font-size:12pt; font-family:calibri;&quot;&gt;' + '--------------------------------------------------------------------------------' +'&lt;/div&gt;' +&#xA;-- Color and columns names&#xA;'&lt;div style=&quot;font-family:Calibri; &quot;&gt;&lt;table&gt;'+'&lt;tr bgcolor=#66E066&gt;'+&#xA;'&lt;td align=left&gt;&lt;font face=&quot;calibri&quot; color=Black&gt;&lt;b&gt;ETL table map ID&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;'+ &#xA;'&lt;td align=left&gt;&lt;font face=&quot;calibri&quot; color=Black&gt;&lt;b&gt;ETL table licensee map ID&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;'+ &#xA;'&lt;td align=left&gt;&lt;font face=&quot;calibri&quot; color=Black&gt;&lt;b&gt;Table Name&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;'+ &#xA;'&lt;td align=left&gt;&lt;font face=&quot;calibri&quot; color=Black&gt;&lt;b&gt;Licensee ID&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;'+ &#xA;'&lt;td align=left&gt;&lt;font face=&quot;calibri&quot; color=Black&gt;&lt;b&gt;Data Updated To&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;'+ &#xA;'&lt;/tr&gt;&lt;/div&gt;'&#xA;&#xA;----------------------------------------------------------&#xA;----------------------------------------------------------&#xA;;WITH XMLNAMESPACES (DEFAULT 'http://schemas.microsoft.com/sqlserver/2004/07/showplan'),&#xA;resolved_tables AS (&#xA;-- Resolved tables list not by licensees&#xA;SELECT &#xA;    a.l_etl_table_map_id AS etl_table_map_id, &#xA;    ISNULL(CAST(a.l_etl_table_licensee_map_id AS NVARCHAR(50)),'N/A') AS etl_table_licensee_map_id,&#xA;    a.l_table_name AS table_name,&#xA;    'N/A' AS licensee_id,&#xA;&#x9;CONVERT(CHAR(19), MIN(DATEADD(HOUR,@local_time_zone_int, ma.data_process_started_at)), 120) + ' ' + @local_time_zone_str +'00' AS data_updated_to&#xA;    FROM &#xA;(&#xA;SELECT t.etl_table_map_id AS t_etl_table_map_id, t.etl_table_licensee_map_id AS t_etl_table_licensee_map_id, t.report_code AS t_report_code, t.table_name AS t_table_name&#xA;      ,l.etl_table_map_id AS l_etl_table_map_id, l.etl_table_licensee_map_id AS l_etl_table_licensee_map_id, l.report_code AS l_report_code, l.table_name AS l_table_name&#xA;FROM etl_table_delay_tmp t (NOLOCK)&#xA;RIGHT JOIN (SELECT etl_table_map_id, etl_table_licensee_map_id, report_code, table_name, licensee_id FROM etl_table_delay_logs (NOLOCK) WHERE collected_at = (SELECT MAX(collected_at) FROM etl_table_delay_logs (NOLOCK))) l &#xA;    ON t.etl_table_map_id = l.etl_table_map_id &#xA;    AND t.report_code = l.report_code&#xA;    AND t.table_name = l.table_name&#xA;WHERE l.licensee_id IS NULL AND l.report_code IS NOT NULL&#xA;GROUP BY t.etl_table_map_id, t.etl_table_licensee_map_id, t.report_code, t.table_name&#xA;        ,l.etl_table_map_id, l.etl_table_licensee_map_id, l.report_code, l.table_name&#xA;HAVING t.etl_table_map_id IS NULL&#xA;UNION&#xA;SELECT t.etl_table_map_id AS t_etl_table_map_id, t.etl_table_licensee_map_id AS t_etl_table_licensee_map_id, t.report_code AS t_report_code, t.table_name AS t_table_name&#xA;      ,l.etl_table_map_id AS l_etl_table_map_id, l.etl_table_licensee_map_id AS l_etl_table_licensee_map_id, l.report_code AS l_report_code, l.table_name AS table_name&#xA;FROM etl_table_delay_tmp t (NOLOCK)&#xA;RIGHT JOIN (SELECT etl_table_map_id, etl_table_licensee_map_id, report_code, table_name, licensee_id FROM etl_table_delay_logs (NOLOCK) WHERE collected_at = (SELECT MAX(collected_at) FROM etl_table_delay_logs (NOLOCK))) l &#xA;    ON t.etl_table_map_id = l.etl_table_map_id &#xA;    AND t.table_name = l.table_name&#xA;WHERE l.licensee_id IS NULL AND l.report_code IS NULL&#xA;GROUP BY t.etl_table_map_id, t.etl_table_licensee_map_id, t.report_code, t.table_name&#xA;        ,l.etl_table_map_id, l.etl_table_licensee_map_id, l.report_code, l.table_name&#xA;HAVING t.etl_table_map_id IS NULL) a&#xA;LEFT JOIN etl_table_maps ma ON a.l_etl_table_map_id = ma.id&#xA;GROUP BY    a.l_etl_table_map_id, &#xA;    ISNULL(CAST(a.l_etl_table_licensee_map_id AS NVARCHAR(50)),'N/A') ,&#xA;    a.l_table_name,&#xA;&#x9;ma.data_process_started_at&#xA;-- Resolved tables list by licensees&#xA;UNION&#xA;SELECT &#xA;    b.l_etl_table_map_id AS etl_table_map_id, &#xA;    ISNULL(CAST(b.l_etl_table_licensee_map_id AS NVARCHAR(50)),'N/A') AS etl_table_licensee_map_id,&#xA;    b.l_table_name AS table_name,&#xA;    ISNULL(CAST(b.l_licensee_id AS  NVARCHAR(50)) ,'N/A') AS licensee_id,&#xA;&#x9;CONVERT(CHAR(19), MIN(DATEADD(HOUR,@local_time_zone_int, mb.data_process_started_at)), 120) + ' ' + @local_time_zone_str +'00' AS data_updated_to&#xA;    FROM &#xA;(&#xA;SELECT t.etl_table_map_id AS t_etl_table_map_id, t.etl_table_licensee_map_id AS t_etl_table_licensee_map_id, t.report_code AS t_report_code, t.table_name AS t_table_name, t.licensee_id t_licensee_id&#xA;      ,l.etl_table_map_id AS l_etl_table_map_id, l.etl_table_licensee_map_id AS l_etl_table_licensee_map_id, l.report_code AS l_report_code, l.table_name AS l_table_name, l.licensee_id AS l_licensee_id&#xA;FROM etl_table_delay_tmp t (NOLOCK)&#xA;RIGHT JOIN (SELECT etl_table_map_id, etl_table_licensee_map_id, report_code, table_name, licensee_id FROM etl_table_delay_logs (NOLOCK) WHERE collected_at = (SELECT MAX(collected_at) FROM etl_table_delay_logs (NOLOCK)) AND licensee_id IS NOT NULL) l &#xA;    ON t.etl_table_map_id = l.etl_table_map_id &#xA;&#x9;AND t.etl_table_licensee_map_id = l.etl_table_licensee_map_id&#xA;&#x9;AND t.report_code = l.report_code&#xA;&#x9;AND t.table_name = l.table_name&#xA;&#x9;AND t.licensee_id = l.licensee_id&#xA;WHERE l.licensee_id IS NOT NULL AND l.report_code IS NOT NULL&#xA;GROUP BY t.etl_table_map_id, t.etl_table_licensee_map_id, t.report_code, t.table_name, t.licensee_id&#xA;        ,l.etl_table_map_id, l.etl_table_licensee_map_id, l.report_code, l.table_name, l.licensee_id&#xA;HAVING t.etl_table_map_id IS NULL&#xA;UNION&#xA;SELECT t.etl_table_map_id AS t_etl_table_map_id, t.etl_table_licensee_map_id AS t_etl_table_licensee_map_id, t.report_code AS t_report_code, t.table_name AS t_table_name, t.licensee_id t_licensee_id&#xA;      ,l.etl_table_map_id AS l_etl_table_map_id, l.etl_table_licensee_map_id AS l_etl_table_licensee_map_id, l.report_code AS l_report_code, l.table_name AS table_name, l.licensee_id AS l_licensee_id&#xA;FROM etl_table_delay_tmp t (NOLOCK)&#xA;RIGHT JOIN (SELECT etl_table_map_id, etl_table_licensee_map_id, report_code, table_name, licensee_id FROM etl_table_delay_logs(NOLOCK)  WHERE collected_at = (SELECT MAX(collected_at) FROM etl_table_delay_logs (NOLOCK)) AND licensee_id IS NOT NULL) l &#xA;    ON t.etl_table_map_id = l.etl_table_map_id &#xA;&#x9;AND t.etl_table_licensee_map_id = l.etl_table_licensee_map_id&#xA;&#x9;AND t.table_name = l.table_name&#xA;&#x9;AND t.licensee_id = l.licensee_id&#xA;WHERE l.licensee_id IS NOT NULL AND l.report_code IS NULL&#xA;GROUP BY t.etl_table_map_id, t.etl_table_licensee_map_id, t.report_code, t.table_name, t.licensee_id&#xA;        ,l.etl_table_map_id, l.etl_table_licensee_map_id, l.report_code, l.table_name, l.licensee_id&#xA;HAVING t.etl_table_map_id IS NULL) b&#xA;LEFT JOIN etl_table_licensee_maps mb ON b.l_etl_table_map_id = mb.etl_table_map_id AND b.l_etl_table_licensee_map_id = mb.id&#xA;GROUP BY     b.l_etl_table_map_id , &#xA;    ISNULL(CAST(b.l_etl_table_licensee_map_id AS NVARCHAR(50)),'N/A'),&#xA;    b.l_table_name ,&#xA;    ISNULL(CAST(b.l_licensee_id AS  NVARCHAR(50)) ,'N/A') ,&#xA;&#x9;mb.data_process_started_at )&#xA;---&#xA;SELECT @Body_resolved_tables =(&#xA;SELECT &#xA;    td = etl_table_map_id, &#xA;    td = etl_table_licensee_map_id,&#xA;    td = table_name,&#xA;    td = licensee_id,&#xA;&#x9;td = data_updated_to&#xA;FROM resolved_tables&#xA;for XML raw('tr'), elements)&#xA;----------------------------------------------------------&#xA;----------------------------------------------------------&#xA;SET @TableHTML3 =&#xA;'&lt;html&gt;'+&#xA;'&lt;head&gt;&lt;style&gt;'+&#xA;-- Data cells styles / font size etc&#xA;'td {border:1px solid #ddd;padding-left:5px;padding-right:5px;padding-top:1px;padding-bottom:1px;font-size:10pt}'+&#xA;'&lt;/style&gt;&lt;/head&gt;'+&#xA;'&lt;body&gt;'+&#xA;'&lt;div style=&quot;margin-top:30px; margin-left:15px; margin-bottom:5px; font-size:12pt; font-family:calibri;&quot;&gt;' + 'Resolved Reports' +'&lt;/div&gt;' +&#xA;--'&lt;div style=&quot;margin-top:5px; margin-left:15px; margin-bottom:5px; font-size:12pt; font-family:calibri;&quot;&gt;' + '--------------------------------------------------------------------------------' +'&lt;/div&gt;' +&#xA;-- Color and columns names&#xA;'&lt;div style=&quot;font-family:Calibri; &quot;&gt;&lt;table&gt;'+'&lt;tr bgcolor=#66E066&gt;'+&#xA;'&lt;td align=left&gt;&lt;font face=&quot;calibri&quot; color=Black&gt;&lt;b&gt;Delay Report Name&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;'+&#xA;'&lt;td align=left&gt;&lt;font face=&quot;calibri&quot; color=Black&gt;&lt;b&gt;Licensee ID&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;'+ &#xA;'&lt;/tr&gt;&lt;/div&gt;'&#xA;&#xA;;WITH XMLNAMESPACES (DEFAULT 'http://schemas.microsoft.com/sqlserver/2004/07/showplan'),&#xA;resolved_reports AS (&#xA;SELECT a.l_report_code AS report_code,&#xA;       'N/A' AS licensee_id&#xA;FROM (&#xA;SELECT t.report_code AS t_report_code, &#xA;       l.report_code AS l_report_code&#xA;FROM etl_table_delay_tmp t &#xA;RIGHT JOIN (SELECT report_code FROM etl_table_delay_logs WHERE collected_at = (SELECT MAX(collected_at) FROM etl_table_delay_logs)) l &#xA;    ON t.report_code = l.report_code&#xA;WHERE l.report_code IS NOT NULL&#xA;GROUP BY t.report_code, l.report_code&#xA;HAVING t.report_code IS NULL) a&#xA;GROUP BY a.l_report_code&#xA;&#xA;UNION &#xA;SELECT b.l_report_code AS report_code,&#xA;       ISNULL(CAST(b.l_licensee_id AS  NVARCHAR(50)) ,'N/A') AS licensee_id&#xA;FROM (&#xA;SELECT t.report_code AS t_report_code, t.licensee_id AS t_licensee_id,&#xA;       l.report_code AS l_report_code, l.licensee_id AS l_licensee_id&#xA;FROM etl_table_delay_tmp t &#xA;RIGHT JOIN (SELECT report_code, licensee_id FROM etl_table_delay_logs WHERE collected_at = (SELECT MAX(collected_at) FROM etl_table_delay_logs)) l &#xA;    ON t.report_code = l.report_code AND t.licensee_id = l.licensee_id&#xA;WHERE l.licensee_id IS NOT NULL AND l.report_code IS NOT NULL&#xA;GROUP BY t.report_code, l.report_code, t.licensee_id, l.licensee_id&#xA;HAVING t.report_code IS NULL) b&#xA;GROUP BY b.l_report_code, ISNULL(CAST(b.l_licensee_id AS  NVARCHAR(50)) ,'N/A'))&#xA;---&#xA;SELECT @Body_resolved_reports =(&#xA;SELECT &#xA;    td = report_code, &#xA;    td = licensee_id&#xA;FROM resolved_reports&#xA;for XML raw('tr'), elements)&#xA;&#xA;SET @Body_resolved_tables = REPLACE(@Body_resolved_tables, '&lt;td&gt;', '&lt;td align=left&gt;&lt;font face=&quot;calibri&quot;&gt;')&#xA;--SET @Body_resolved_reports = REPLACE(@Body_resovled_reports, '&lt;td&gt;', '&lt;td align=left&gt;&lt;font face=&quot;calibri&quot;&gt;')&#xA;&#xA;--SET @TableHTML = @TableHTML + @Body_delay_tables + '&lt;/table&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;'&#xA;--SET @TableHTML = @TableHTML1 + @Body_delay_tables + @TableHTML2 + @Body_delay_reports + '&lt;/table&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;'&#xA;SET @TableHTML = @TableHTML0 + '&lt;/table&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;'&#xA;&#xA;IF @current_delay_count = 0&#xA;BEGIN &#xA;SET @TableHTML1 =&#xA;'&lt;html&gt;'+&#xA;'&lt;head&gt;&lt;style&gt;'+&#xA;'td {border:1px solid #ddd;padding-left:5px;padding-right:5px;padding-top:1px;padding-bottom:1px;font-size:10pt}'+&#xA;'&lt;/style&gt;&lt;/head&gt;'+&#xA;'&lt;body&gt;'+&#xA;'&lt;div style=&quot;margin-top:30px; margin-left:15px; margin-bottom:30px; font-size:12pt; font-family:calibri; background-color: #66E066&quot;&gt;' + '*** All ETL delay jobs resolved. ***' +'&lt;/div&gt;' &#xA;    &#xA;    SET @TableHTML = @TableHTML + @TableHTML1 + '&lt;/table&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;'&#xA;    SET @EmailSubject = '[' + @severity + '][' + @service + '][' + @env + '] All ETL delay jobs resolved.'&#xA;END&#xA;&#xA;SET @TableHTML = @TableHTML + @TableHTML2 + @Body_resolved_tables + '&lt;/table&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;'&#xA;SET @TableHTML = @TableHTML + @TableHTML3 + @Body_resolved_reports + '&lt;/table&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;'&#xA;&#xA;&#xA;--SET @TableHTML = @TableHTML2 + @Body_delay_reports + '&lt;/table&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;'&#xA;--SET @TableHTML = '&lt;div style=&quot;color:Black; background-color: Pink; font-size:8pt; font-family:Calibri; width:auto;&quot;&gt;' + @TableHTML + '&lt;/div&gt;'&#xA;--SET @TableHTML = '&lt;div style=&quot;color:Black; font-size:8pt; font-family:Calibri; width:auto;&quot;&gt;' + @TableHTML + '&lt;/div&gt;'&#xA;&#xA;-------------------------------&#xA;----- Sending email --------&#xA;-------------------------------&#xA;IF( @TableHTML IS NOT NULL )&#xA;BEGIN&#xA;exec msdb.dbo.sp_send_dbmail&#xA;@profile_name = @sql_mail_profile_name,&#xA;@recipients = @recipient_list,&#xA;@body = @TableHTML,&#xA;@subject = @EmailSubject,&#xA;@body_format = 'HTML'&#xA;END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::delay_alert_resolved_severity"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::service_name"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::environment"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::delay_alert_resolved_subject"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="User::sql_mail_profile_name"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="5"
+                SQLTask:DtsVariableName="User::delay_alert_recipients"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="6"
+                SQLTask:DtsVariableName="User::current_delay_count"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Sequence Container"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{525FB11B-40F0-4698-ADF5-447C37C32CED}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Sequence Container">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container\Sequence Container\etl_table_map delay count"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{311E8A8F-D729-4A5A-AED1-A59BD13BB0DD}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="etl_table_map delay count"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{6EC51AD9-E24A-43BF-9C7C-7BA81E9FF76B}"
+                  SQLTask:SqlStatementSource="SELECT SUM(a.cnt)&#xA;FROM (&#xA;SELECT SUM(delay_counter) AS cnt&#xA;FROM etl_table_maps m&#xA;UNION&#xA;SELECT SUM(delay_counter) AS cnt&#xA;FROM etl_table_licensee_maps lm&#xA;) a;"
+                  SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="0"
+                    SQLTask:DtsVariableName="User::etl_table_map_delay_count" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container\Sequence Container\Get Current delay count from tmp"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{3BD68552-30BB-4BB8-926B-8CCFB67783E0}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Get Current delay count from tmp"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{6EC51AD9-E24A-43BF-9C7C-7BA81E9FF76B}"
+                  SQLTask:SqlStatementSource="SELECT COUNT(*) FROM etl_table_delay_tmp (NOLOCK)"
+                  SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="0"
+                    SQLTask:DtsVariableName="User::current_delay_count" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container\Sequence Container\Get Parameters"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{ef77f185-0c07-4d69-897c-450cbab35b12}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Get Parameters"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{6EC51AD9-E24A-43BF-9C7C-7BA81E9FF76B}"
+                  SQLTask:SqlStatementSource="SELECT a.value, b.value, c.value, d.value, e.value, f.value, g.value, h.value, i.value, j.value&#xA;FROM etl_parameters a, etl_parameters b, etl_parameters c, etl_parameters d, etl_parameters e, etl_parameters f, etl_parameters g, etl_parameters h,etl_parameters i, etl_parameters j&#xA;WHERE &#xA;a.parameter='service' &#xA;AND b.parameter='environment'&#xA;AND c.parameter='sql_mail_profile_name' &#xA;AND d.parameter='delay_alert_recipients' &#xA;AND e.parameter='delay_alert_max_count'&#xA;AND f.parameter='delay_alert_severity' &#xA;AND g.parameter='delay_alert_subject'&#xA;AND h.parameter='delay_alert_resolved_severity'&#xA;AND i.parameter='delay_alert_resolved_subject'&#xA;AND j.parameter='etl_table_delay_logs_duration_days'"
+                  SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="0"
+                    SQLTask:DtsVariableName="User::service_name" />
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="1"
+                    SQLTask:DtsVariableName="User::environment" />
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="2"
+                    SQLTask:DtsVariableName="User::sql_mail_profile_name" />
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="3"
+                    SQLTask:DtsVariableName="User::delay_alert_recipients" />
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="4"
+                    SQLTask:DtsVariableName="User::delay_alert_max_count" />
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="5"
+                    SQLTask:DtsVariableName="User::delay_alert_severity" />
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="6"
+                    SQLTask:DtsVariableName="User::delay_alert_subject" />
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="7"
+                    SQLTask:DtsVariableName="User::delay_alert_resolved_severity" />
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="8"
+                    SQLTask:DtsVariableName="User::delay_alert_resolved_subject" />
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="9"
+                    SQLTask:DtsVariableName="User::etl_table_delay_logs_duration_days" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container\Sequence Container\Increase delay counter or Reset if reach max"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{D29F5EA4-7223-4C23-9EF9-BA99BD73E69D}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Increase delay counter or Reset if reach max"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{6EC51AD9-E24A-43BF-9C7C-7BA81E9FF76B}"
+                  SQLTask:SqlStatementSource="UPDATE m&#xA;SET m.delay_counter = m.delay_counter + 1&#xA;FROM etl_table_maps m&#xA;JOIN (SELECT DISTINCT etl_table_map_id FROM etl_table_delay_tmp WHERE licensee_id IS NULL GROUP BY etl_table_map_id) t &#xA;  ON t.etl_table_map_id = m.id&#xA;WHERE m.delay_counter &gt;= 0;&#xA;&#xA;UPDATE l&#xA;SET l.delay_counter = l.delay_counter + 1&#xA;FROM etl_table_licensee_maps l&#xA;JOIN (SELECT DISTINCT etl_table_licensee_map_id FROM etl_table_delay_tmp WHERE licensee_id IS NOT NULL GROUP BY etl_table_licensee_map_id) t&#xA;  ON t.etl_table_licensee_map_id = l.id&#xA;WHERE  l.delay_counter &gt;= 0;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container\Sequence Container\Prepare etl_table_delay_tmp"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{9F38B6C5-7007-4F39-ACDD-0BA638516F2E}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Prepare etl_table_delay_tmp"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{6EC51AD9-E24A-43BF-9C7C-7BA81E9FF76B}"
+                  SQLTask:SqlStatementSource="TRUNCATE TABLE etl_table_delay_tmp;&#xA;&#xA;INSERT INTO etl_table_delay_tmp (etl_table_map_id, etl_table_licensee_map_id, report_code, report_acceptable_delay_mins, table_name, licensee_id, data_updated_to, collected_at)&#xA;SELECT &#xA;    etl_table_map_id,&#xA;    etl_table_licensee_map_id,&#xA;    report_code,&#xA;    report_acceptable_delay_mins,&#xA;    table_name, &#xA;    licensee_id,&#xA;    data_updated_to,&#xA;    collected_at&#xA;FROM vw_etl_table_delay (NOLOCK); " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container\Sequence Container\Send delay alert mail"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{D8071950-B6A0-469D-BA92-3A99DD4323F9}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Send delay alert mail"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{6EC51AD9-E24A-43BF-9C7C-7BA81E9FF76B}"
+                  SQLTask:SqlStatementSource="&#xA;DECLARE &#xA;&#xA;&#xA;@severity NVARCHAR(50) = ?,&#xA;@service NVARCHAR(85) = ?,&#xA;@env NVARCHAR(10) = ?,&#xA;@subject_text NVARCHAR(255) = ?,&#xA;@sql_mail_profile_name NVARCHAR(85) = ?,&#xA;@recipient_list NVARCHAR(512) = ?,&#xA;@delay_alert_max_count INT = ?,&#xA;@EmailSubject varchar(100),&#xA;@TextTitle varchar(500),&#xA;@TableHTML nvarchar(max),&#xA;@TableHTML1 nvarchar(max),&#xA;@TableHTML2 nvarchar(max),&#xA;@TableHTML3 nvarchar(max),&#xA;@TableHTML4 nvarchar(max),&#xA;@Body nvarchar(max),&#xA;@Body_delay_tables nvarchar(max),&#xA;@Body_delay_reports nvarchar(max),&#xA;@local_time_zone_int INT,&#xA;@local_time_zone_str nvarchar(5);&#xA;&#xA;SELECT @local_time_zone_str = value FROM etl_parameters WHERE parameter='local_time_zone';&#xA;SELECT @local_time_zone_int = CAST(@local_time_zone_str AS INT);&#xA;&#xA;-- xp_regread is UNABLE TO execute by public by default.&#xA;--DECLARE @Domain varchar(100), @key varchar(100)&#xA;--SET @key = 'SYSTEM\ControlSet001\Services\Tcpip\Parameters\'&#xA;--EXEC master..xp_regread @rootkey='HKEY_LOCAL_MACHINE', @key=@key,@value_name='Domain',@value=@Domain OUTPUT &#xA;&#xA;&#xA;SET @EmailSubject = '[' + @severity + '][' + @service + '][' + @env + '] ' + @subject_text&#xA;--SET @TextTitle = 'delay alert ' + CAST(@most_recent_hours AS NVARCHAR) + ' Hours and avg elapsed time over ' + CAST(@avg_elapsed_sec_threshold AS NVARCHAR) + ' seconds.'&#xA;&#xA;SET @TableHTML1 =&#xA;'&lt;html&gt;'+&#xA;'&lt;head&gt;&lt;style&gt;'+&#xA;-- Data cells styles / font size etc&#xA;'td {border:1px solid #ddd;padding-left:5px;padding-right:5px;padding-top:1px;padding-bottom:1px;font-size:10pt}'+&#xA;'&lt;/style&gt;&lt;/head&gt;'+&#xA;'&lt;body&gt;'+&#xA;-- TextTitle style&#xA;'&lt;div style=&quot;margin-top:5px; margin-left:15px; margin-bottom:5px; font-size:12pt; font-family:calibri;&quot;&gt;' + 'Report Detail: ' +&#xA;'&lt;div style=&quot;margin-top:5px; margin-left:15px; margin-bottom:5px; font-size:12pt; font-family:calibri;&quot;&gt;' + 'Severity:    ' + @severity +'&lt;/div&gt;' +&#xA;--'&lt;div style=&quot;margin-top:5px; margin-left:15px; margin-bottom:5px; font-size:12pt; font-family:calibri;&quot;&gt;' + 'Host:        ' + @@servername + '.'+convert(varchar(100),@Domain) +'&lt;/div&gt;' +&#xA;'&lt;div style=&quot;margin-top:5px; margin-left:15px; margin-bottom:5px; font-size:12pt; font-family:calibri;&quot;&gt;' + 'Host:        ' + @@servername +'&lt;/div&gt;' +&#xA;'&lt;div style=&quot;margin-top:5px; margin-left:15px; margin-bottom:5px; font-size:12pt; font-family:calibri;&quot;&gt;' + 'Service:     ' + @service +'&lt;/div&gt;' +&#xA;'&lt;div style=&quot;margin-top:5px; margin-left:15px; margin-bottom:5px; font-size:12pt; font-family:calibri;&quot;&gt;' + 'Environment: ' + @env +'&lt;/div&gt;' +&#xA;'&lt;div style=&quot;margin-top:5px; margin-left:15px; margin-bottom:5px; font-size:12pt; font-family:calibri;&quot;&gt;' + 'Detected at: ' + CONVERT(CHAR(19), GETDATE(), 120) + ' ' + @local_time_zone_str + '00' +'&lt;/div&gt;' +&#xA;'&lt;div style=&quot;margin-top:5px; margin-left:15px; margin-bottom:20px; font-size:12pt; font-family:calibri;&quot;&gt;' + '===============================================================================' +'&lt;/div&gt;' +&#xA;&#xA;'&lt;div style=&quot;margin-top:5px; margin-left:15px; margin-bottom:5px; font-size:12pt; font-family:calibri;&quot;&gt;' + 'Delay Tables' +'&lt;/div&gt;' +&#xA;&#xA;-- Color and columns names&#xA;'&lt;div style=&quot;font-family:Calibri; &quot;&gt;&lt;table&gt;'+'&lt;tr bgcolor=#cc0000&gt;'+&#xA;'&lt;td align=left&gt;&lt;font face=&quot;calibri&quot; color=White&gt;&lt;b&gt;Table Name&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;'+ -- SQL Handle&#xA;'&lt;td align=left&gt;&lt;font face=&quot;calibri&quot; color=White&gt;&lt;b&gt;Licensee ID&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;'+ -- SQL Statement&#xA;'&lt;td align=left&gt;&lt;font face=&quot;calibri&quot; color=White&gt;&lt;b&gt;Licensee Name&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;'+ -- Creation Time&#xA;'&lt;td align=left&gt;&lt;font face=&quot;calibri&quot; color=White&gt;&lt;b&gt;Data Updated To&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;'+ -- Last Execution Time&#xA;'&lt;/tr&gt;&lt;/div&gt;'&#xA;&#xA;----------------------------------------------------------&#xA;----------------------------------------------------------&#xA;;WITH XMLNAMESPACES (DEFAULT 'http://schemas.microsoft.com/sqlserver/2004/07/showplan'),&#xA;delay_tables AS (&#xA;SELECT &#xA;    t.table_name, &#xA;    ISNULL(CAST(t.licensee_id AS  NVARCHAR(50)) ,'N/A') AS licensee_id,&#xA;    ISNULL(l.name,'N/A') AS licensee_name,&#xA;    CONVERT(CHAR(19), MIN(DATEADD(HOUR,@local_time_zone_int,t.data_updated_to)), 120) + ' ' + @local_time_zone_str +'00' AS data_updated_to&#xA;FROM etl_table_delay_tmp t (NOLOCK)&#xA;LEFT JOIN licensees l (NOLOCK) ON t.licensee_id = l.licensee_id&#xA;JOIN etl_table_maps m (NOLOCK) ON  t.etl_table_map_id = m.id&#xA;WHERE t.licensee_id IS NULL AND m.delay_counter % @delay_alert_max_count = 0&#xA;GROUP BY&#xA;    t.table_name, &#xA;    t.licensee_id,&#xA;    l.name&#xA;UNION&#xA;SELECT &#xA;    t.table_name, &#xA;    ISNULL(CAST(t.licensee_id AS  NVARCHAR(50)) ,'N/A') AS licensee_id,&#xA;    ISNULL(l.name,'N/A') AS licensee_name,&#xA;    CONVERT(CHAR(19), MIN(DATEADD(HOUR,@local_time_zone_int,t.data_updated_to)), 120) + ' ' + @local_time_zone_str +'00' AS data_updated_to&#xA;FROM etl_table_delay_tmp (NOLOCK) t&#xA;LEFT JOIN licensees l (NOLOCK) ON t.licensee_id = l.licensee_id&#xA;JOIN etl_table_licensee_maps lm (NOLOCK) ON  t.etl_table_map_id = lm.etl_table_map_id AND t.etl_table_licensee_map_id = lm.id&#xA;WHERE t.licensee_id IS NOT NULL AND lm.delay_counter % @delay_alert_max_count = 0&#xA;GROUP BY&#xA;    t.table_name, &#xA;    t.licensee_id,&#xA;    l.name)&#xA;---&#xA;SELECT @Body_delay_tables =(&#xA;SELECT &#xA;    td = table_name, &#xA;    td = licensee_id,&#xA;    td = licensee_name,&#xA;    td = data_updated_to&#xA;FROM delay_tables&#xA;for XML raw('tr'), elements)&#xA;----------------------------------------------------------&#xA;----------------------------------------------------------&#xA;SET @TableHTML2 =&#xA;'&lt;html&gt;'+&#xA;'&lt;head&gt;&lt;style&gt;'+&#xA;-- Data cells styles / font size etc&#xA;'td {border:1px solid #ddd;padding-left:5px;padding-right:5px;padding-top:1px;padding-bottom:1px;font-size:10pt}'+&#xA;'&lt;/style&gt;&lt;/head&gt;'+&#xA;'&lt;body&gt;'+&#xA;'&lt;div style=&quot;margin-top:30px; margin-left:15px; margin-bottom:5px; font-size:12pt; font-family:calibri;&quot;&gt;' + 'Delay Reports' +'&lt;/div&gt;' +&#xA;&#xA;-- Color and columns names&#xA;'&lt;div style=&quot;font-family:Calibri; &quot;&gt;&lt;table&gt;'+'&lt;tr bgcolor=#cc0000&gt;'+&#xA;'&lt;td align=left&gt;&lt;font face=&quot;calibri&quot; color=White&gt;&lt;b&gt;Delay Report Name&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;'+ -- SQL Handle&#xA;'&lt;td align=left&gt;&lt;font face=&quot;calibri&quot; color=White&gt;&lt;b&gt;Licensee ID&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;'+ -- SQL Statement&#xA;'&lt;td align=left&gt;&lt;font face=&quot;calibri&quot; color=White&gt;&lt;b&gt;Licensee Name&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;'+ -- Creation Time&#xA;'&lt;td align=left&gt;&lt;font face=&quot;calibri&quot; color=White&gt;&lt;b&gt;Data Updated To&lt;/b&gt;&lt;/font&gt;&lt;/td&gt;'+ -- Last Execution Time&#xA;'&lt;/tr&gt;&lt;/div&gt;'&#xA;&#xA;;WITH XMLNAMESPACES (DEFAULT 'http://schemas.microsoft.com/sqlserver/2004/07/showplan'),&#xA;delay_reports AS (&#xA;SELECT &#xA;    t.report_code, &#xA;    ISNULL(CAST(t.licensee_id AS  NVARCHAR(50)) ,'N/A') AS licensee_id,&#xA;    ISNULL(l.name,'N/A') AS licensee_name,&#xA;    CONVERT(CHAR(19), MIN(DATEADD(HOUR,@local_time_zone_int,t.data_updated_to)), 120) + ' ' + @local_time_zone_str +'00' AS data_updated_to&#xA;FROM etl_table_delay_tmp t (NOLOCK)&#xA;LEFT JOIN licensees l (NOLOCK) ON t.licensee_id = l.licensee_id&#xA;JOIN etl_table_maps m (NOLOCK) ON  t.etl_table_map_id = m.id&#xA;WHERE t.licensee_id IS NULL AND m.delay_counter % @delay_alert_max_count = 0 AND report_code IS NOT NULL &#xA;GROUP BY&#xA;    t.report_code, &#xA;    t.licensee_id,&#xA;    l.name&#xA;UNION&#xA;SELECT &#xA;    t.report_code, &#xA;    ISNULL(CAST(t.licensee_id AS  NVARCHAR(50)) ,'N/A') AS licensee_id,&#xA;    ISNULL(l.name,'N/A') AS licensee_name,&#xA;    CONVERT(CHAR(19), MIN(DATEADD(HOUR,@local_time_zone_int,t.data_updated_to)), 120) + ' ' + @local_time_zone_str +'00' AS data_updated_to&#xA;FROM etl_table_delay_tmp t (NOLOCK)&#xA;LEFT JOIN licensees l (NOLOCK) ON t.licensee_id = l.licensee_id&#xA;JOIN etl_table_licensee_maps lm (NOLOCK) ON  t.etl_table_map_id = lm.etl_table_map_id AND t.etl_table_licensee_map_id = lm.id&#xA;WHERE t.licensee_id IS NOT NULL AND lm.delay_counter % @delay_alert_max_count = 0 AND report_code IS NOT NULL &#xA;GROUP BY&#xA;    t.report_code, &#xA;    t.licensee_id,&#xA;    l.name)&#xA;---&#xA;SELECT @Body_delay_reports =(&#xA;SELECT &#xA;    td = report_code, &#xA;    td = licensee_id,&#xA;    td = licensee_name,&#xA;    td = data_updated_to&#xA;FROM delay_reports&#xA;for XML raw('tr'), elements)&#xA;&#xA;SET @Body_delay_tables = REPLACE(@Body_delay_tables, '&lt;td&gt;', '&lt;td align=left&gt;&lt;font face=&quot;calibri&quot;&gt;')&#xA;SET @Body_delay_reports = REPLACE(@Body_delay_reports, '&lt;td&gt;', '&lt;td align=left&gt;&lt;font face=&quot;calibri&quot;&gt;')&#xA;&#xA;--SET @TableHTML = @TableHTML + @Body_delay_tables + '&lt;/table&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;'&#xA;--SET @TableHTML = @TableHTML1 + @Body_delay_tables + @TableHTML2 + @Body_delay_reports + '&lt;/table&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;'&#xA;SET @TableHTML = @TableHTML1 + @Body_delay_tables + '&lt;/table&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;'&#xA;SET @TableHTML = @TableHTML + @TableHTML2 + @Body_delay_reports + '&lt;/table&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;'&#xA;--SET @TableHTML = @TableHTML2 + @Body_delay_reports + '&lt;/table&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;'&#xA;--SET @TableHTML = '&lt;div style=&quot;color:Black; background-color: Pink; font-size:8pt; font-family:Calibri; width:auto;&quot;&gt;' + @TableHTML + '&lt;/div&gt;'&#xA;--SET @TableHTML = '&lt;div style=&quot;color:Black; font-size:8pt; font-family:Calibri; width:auto;&quot;&gt;' + @TableHTML + '&lt;/div&gt;'&#xA;&#xA;-------------------------------&#xA;----- Sending email --------&#xA;-------------------------------&#xA;IF( @TableHTML IS NOT NULL )&#xA;BEGIN&#xA;exec msdb.dbo.sp_send_dbmail&#xA;@profile_name = @sql_mail_profile_name,&#xA;@recipients = @recipient_list,&#xA;@body = @TableHTML,&#xA;@subject = @EmailSubject,&#xA;@body_format = 'HTML'&#xA;END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::delay_alert_severity"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="130"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="User::service_name"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="130"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="2"
+                    SQLTask:DtsVariableName="User::environment"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="130"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="3"
+                    SQLTask:DtsVariableName="User::delay_alert_subject"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="130"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="4"
+                    SQLTask:DtsVariableName="User::sql_mail_profile_name"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="130"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="5"
+                    SQLTask:DtsVariableName="User::delay_alert_recipients"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="130"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="6"
+                    SQLTask:DtsVariableName="User::delay_alert_max_count"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="3"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Sequence Container\Sequence Container.PrecedenceConstraints[Constraint 1]"
+              DTS:CreationName=""
+              DTS:DTSID="{E59F50F2-C73F-4229-A615-239E7B91AC5D}"
+              DTS:From="Package\Sequence Container\Sequence Container\Get Parameters"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 1"
+              DTS:To="Package\Sequence Container\Sequence Container\Prepare etl_table_delay_tmp" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Sequence Container\Sequence Container.PrecedenceConstraints[Constraint 12]"
+              DTS:CreationName=""
+              DTS:DTSID="{45C43889-97E6-470C-9339-7478AEBC7A56}"
+              DTS:From="Package\Sequence Container\Sequence Container\Send delay alert mail"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 12"
+              DTS:To="Package\Sequence Container\Sequence Container\Increase delay counter or Reset if reach max" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Sequence Container\Sequence Container.PrecedenceConstraints[Constraint 2]"
+              DTS:CreationName=""
+              DTS:DTSID="{8E250080-19A0-4870-BC31-369F6A34C49E}"
+              DTS:From="Package\Sequence Container\Sequence Container\Prepare etl_table_delay_tmp"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 2"
+              DTS:To="Package\Sequence Container\Sequence Container\etl_table_map delay count" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Sequence Container\Sequence Container.PrecedenceConstraints[Constraint 3]"
+              DTS:CreationName=""
+              DTS:DTSID="{217A5014-7484-436C-897B-71A0624DEB5A}"
+              DTS:EvalOp="3"
+              DTS:Expression="@[User::current_delay_count] &gt; 0"
+              DTS:From="Package\Sequence Container\Sequence Container\Get Current delay count from tmp"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 3"
+              DTS:To="Package\Sequence Container\Sequence Container\Send delay alert mail" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Sequence Container\Sequence Container.PrecedenceConstraints[Constraint 6]"
+              DTS:CreationName=""
+              DTS:DTSID="{41667EE0-B282-435D-9BBA-A46B9D5CF330}"
+              DTS:From="Package\Sequence Container\Sequence Container\etl_table_map delay count"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 6"
+              DTS:To="Package\Sequence Container\Sequence Container\Get Current delay count from tmp" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{77D0A531-97A7-41E0-8182-CCB3D30E7F52}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::resolved_table_count] &gt;0 &amp;&amp;  @[User::etl_table_map_delay_count] &gt; 0"
+          DTS:From="Package\Sequence Container\Count Resolved tables"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Sequence Container\Send resolve email" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{F02A6C4F-FA17-4FF2-953B-AA93A5A2C62B}"
+          DTS:From="Package\Sequence Container\Sequence Container"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Sequence Container\Count Resolved tables" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 5]"
+          DTS:CreationName=""
+          DTS:DTSID="{8791E26B-4526-4BE4-9003-FFEDD4D8B218}"
+          DTS:From="Package\Sequence Container\Send resolve email"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 5"
+          DTS:To="Package\Sequence Container\Reset delay counter for resolved jobs" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{1EDCD583-FD02-4D54-B1C6-26BCE7142E0F}"
+      DTS:From="Package\Sequence Container"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Insert into etl_table_delay_logs" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{A7820E7A-6F4C-4CB5-AE05-5D9755BE0666}"
+      DTS:From="Package\Insert into etl_table_delay_logs"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Housekeep etl_table_delay_logs" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="232,42"
+          Id="Package\Housekeep etl_table_delay_logs"
+          TopLeft="712.884920634924,509.837301587302" />
+        <NodeLayout
+          Size="229,42"
+          Id="Package\Insert into etl_table_delay_logs"
+          TopLeft="709.500000000003,431.353174603175" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Sequence Container\Count Resolved tables"
+          TopLeft="359.119047619048,59.1468253968254" />
+        <NodeLayout
+          Size="240,48"
+          Id="Package\Sequence Container\Reset delay counter for resolved jobs"
+          TopLeft="339.412698412699,272.587301587302" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\Sequence Container\Send resolve email"
+          TopLeft="373.535714285714,149.730158730159" />
+        <NodeLayout
+          Size="206,42"
+          Id="Package\Sequence Container\Sequence Container\etl_table_map delay count"
+          TopLeft="34.5,140.035714285715" />
+        <NodeLayout
+          Size="241,42"
+          Id="Package\Sequence Container\Sequence Container\Get Current delay count from tmp"
+          TopLeft="19.7499999999999,213.75" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Sequence Container\Sequence Container\Get Parameters"
+          TopLeft="58.4722222222222,0.944444444444457" />
+        <NodeLayout
+          Size="288,43"
+          Id="Package\Sequence Container\Sequence Container\Increase delay counter or Reset if reach max"
+          TopLeft="5.5,372.5" />
+        <NodeLayout
+          Size="216,42"
+          Id="Package\Sequence Container\Sequence Container\Prepare etl_table_delay_tmp"
+          TopLeft="28.5,66.7142857142857" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Sequence Container\Sequence Container\Send delay alert mail"
+          TopLeft="47.5714285714286,295.035714285715" />
+        <EdgeLayout
+          Id="Package\Sequence Container\Sequence Container.PrecedenceConstraints[Constraint 1]"
+          TopLeft="135.986111111111,42.9444444444445">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,23.7698412698412"
+              Start="0,0"
+              End="0,16.2698412698412">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.2698412698412" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\Sequence Container.PrecedenceConstraints[Constraint 12]"
+          TopLeft="137.571428571429,337.035714285715">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="11.9285714285714,35.4642857142856"
+              Start="0,0"
+              End="11.9285714285714,27.9642857142856">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.7321428571428" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.7321428571428"
+                    Point2="0,17.7321428571428"
+                    Point3="4,17.7321428571428" />
+                  <mssgle:LineSegment
+                    End="7.92857142857144,17.7321428571428" />
+                  <mssgle:CubicBezierSegment
+                    Point1="7.92857142857144,17.7321428571428"
+                    Point2="11.9285714285714,17.7321428571428"
+                    Point3="11.9285714285714,21.7321428571428" />
+                  <mssgle:LineSegment
+                    End="11.9285714285714,27.9642857142856" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\Sequence Container.PrecedenceConstraints[Constraint 2]"
+          TopLeft="137,108.714285714286">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.3214285714291"
+              Start="0,0"
+              End="0,23.8214285714291">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.8214285714291" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\Sequence Container.PrecedenceConstraints[Constraint 3]"
+          TopLeft="138.910714285714,255.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39.2857142857142"
+              Start="0,0"
+              End="0,31.7857142857142">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.7857142857142" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,7.89285714285711,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\Sequence Container.PrecedenceConstraints[Constraint 6]"
+          TopLeft="138.875,182.035714285715">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.7142857142857"
+              Start="0,0"
+              End="0,24.2142857142857">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.2142857142857" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="302,470"
+          Size="302,513"
+          Id="Package\Sequence Container\Sequence Container"
+          TopLeft="15.68253968254,0.476190476190482" />
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="454.827380952381,101.146825396825">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48.5833333333333"
+              Start="0,0"
+              End="0,41.0833333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.0833333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,12.5416666666666,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 1]"
+          TopLeft="317.68253968254,256.97619047619">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="41.436507936508,-176.829365079365"
+              Start="0,0"
+              End="33.936507936508,-176.829365079365">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="16.718253968254,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="16.718253968254,0"
+                    Point2="20.718253968254,0"
+                    Point3="20.718253968254,-4" />
+                  <mssgle:LineSegment
+                    End="20.718253968254,-172.829365079365" />
+                  <mssgle:CubicBezierSegment
+                    Point1="20.718253968254,-172.829365079365"
+                    Point2="20.718253968254,-176.829365079365"
+                    Point3="24.718253968254,-176.829365079365" />
+                  <mssgle:LineSegment
+                    End="33.936507936508,-176.829365079365" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 5]"
+          TopLeft="458.724206349207,191.730158730159">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,80.8571428571428"
+              Start="0,0"
+              End="0,73.3571428571428">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,73.3571428571428" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="604,568"
+          Size="604,611"
+          Id="Package\Sequence Container"
+          TopLeft="59.4285714285714,140.099206349206" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="663.428571428571,448.97619047619">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="46.0714285714316,0"
+              Start="0,0"
+              End="38.5714285714316,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="38.5714285714316,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="826.442460317464,473.353174603175">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36.4841269841268"
+              Start="0,0"
+              End="0,28.9841269841268">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.9841269841268" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

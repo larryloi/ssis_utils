@@ -1,0 +1,72 @@
+test:
+  login: IAS\svc_idc_etl
+  etl_job_schedule:
+    enabled: 1
+    freq_type: 4
+    freq_interval: 1
+    freq_subday_type: 4
+    freq_subday_interval: 10
+
+integration:
+  login: IAS\svc_idc_etl
+  etl_job_schedule:
+    enabled: 1
+    freq_type: 4
+    freq_interval: 1
+    freq_subday_type: 4
+    freq_subday_interval: 10
+
+staging0: 
+  login: IAS\svc_idc_etl
+  etl_job_schedule:
+    enabled: 1
+    freq_type: 4
+    freq_interval: 1
+    freq_subday_type: 4
+    freq_subday_interval: 10
+
+ias_prd:
+  login: IAS\svc_idc_etl
+  etl_job_schedule:
+    enabled: 1
+    freq_type: 4
+    freq_interval: 1
+    freq_subday_type: 4
+    freq_subday_interval: 10
+
+sandbox0:
+  login: LAXIGAMES\svc_idc_etl
+  etl_job_schedule:
+    enabled: 1
+    freq_type: 4
+    freq_interval: 1
+    freq_subday_type: 4
+    freq_subday_interval: 2
+
+production0:
+  login: LAXIGAMES\svc_idc_etl
+  etl_job_schedule:
+    enabled: 1
+    freq_type: 4
+    freq_interval: 1
+    freq_subday_type: 4
+    freq_subday_interval: 2
+
+sandbox3:
+  login: GAMESOURCECLOUD\svc_idc_etl
+  etl_job_schedule:
+    enabled: 1
+    freq_type: 4
+    freq_interval: 1
+    freq_subday_type: 4
+    freq_subday_interval: 2
+
+production3:
+  login: GAMESOURCECLOUD\svc_idc_etl
+  etl_job_schedule:
+    enabled: 1
+    freq_type: 4
+    freq_interval: 1
+    freq_subday_type: 4
+    freq_subday_interval: 2
+

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="ssis_targetdb"
+  DTS:DTSID="{6EC51AD9-E24A-43BF-9C7C-7BA81E9FF76B}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=MO-STG-SSRS01;User ID=anubis;Initial Catalog=anubis_dm_staging0;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAArMwEnxOV70Klvv2A7twKfwAAAAACAAAAAAADZgAAwAAAABAAAACNP6MSax/XNf8kfFJkrHGFAAAAAASAAACgAAAAEAAAAMpm8rBFUKfzYhEZx/6WbLB4AAAAhIhc3S6fjgcVUTG/31L1670+4jQUMvpkUpZt/8RUpOh4KufZTtS9OUHFiayHLBC/Xh0zLvOgGnQp/ckdpCmkOxnnJtz80bBgxlIsYoLZ7e/ejRjA2hxDYyb7eaJKA1sXXnN7LvzVHXiXmJ8OHGc7dcKzRUPoZukfFAAAAJbYUhVwMAiRq34c0x3fMOt6Mzr1</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

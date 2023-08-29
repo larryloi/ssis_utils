@@ -1,0 +1,78 @@
+login: LAXIGAMES\svc_idc_etl
+proxy_name: SSISProxyLogin
+
+# Columns definition refer to, https://docs.microsoft.com/en-us/sql/relational-databases/system-tables/dbo-sysjobs-transact-sql?view=sql-server-2016
+# id, name, enabled, notify_level_eventlog, notify_level_email, notify_level_netsend, notify_level_page, delete_level, description, category_name, owner_login_name, ssis_folder, ssis_project
+etl_job_list: [
+[1,'Global-ExistPlatform_anubis_dm_financial',0,0,0,0,0,0,'Global-ExistPlatform_anubis_dm_financial','anubis_dm','anubis_dm','anubis_dm'],
+[2,'Global-ExistPlatform_anubis_dm_jackpot',0,0,0,0,0,0,'Global-ExistPlatform_anubis_dm_jackpot','anubis_dm','anubis_dm','anubis_dm'],
+[3,'Global-Openplatform_anubis_dm_domain',0,0,0,0,0,0,'Global-Openplatform_anubis_dm_domain','anubis_dm','anubis_dm','anubis_dm'],
+[4,'Global-Openplatform_anubis_dm_financial',0,0,0,0,0,0,'Global-Openplatform_anubis_dm_financial','anubis_dm','anubis_dm','anubis_dm'],
+[5,'Global-Openplatform_anubis_dm_jackpot',0,0,0,0,0,0,'Global-Openplatform_anubis_dm_jackpot','anubis_dm','anubis_dm','anubis_dm'],
+[6,'Online-ExistPlatform_anubis_dm_domain',0,0,0,0,0,0,'Online-ExistPlatform_anubis_dm_domain','anubis_dm','anubis_dm','anubis_dm'],
+[7,'Online-ExistPlatform_anubis_dm_financial',0,0,0,0,0,0,'Online-ExistPlatform_anubis_dm_financial','anubis_dm','anubis_dm','anubis_dm'],
+[8,'Online-ExistPlatform_anubis_dm_jackpot',0,0,0,0,0,0,'Online-ExistPlatform_anubis_dm_jackpot','anubis_dm','anubis_dm','anubis_dm'],
+[9,'Online-OpenPlatform_anubis_dm_domain',0,0,0,0,0,0,'Online-OpenPlatform_anubis_dm_domain','anubis_dm','anubis_dm','anubis_dm'],
+[10,'Online-OpenPlatform_anubis_dm_financial',0,0,0,0,0,0,'Online-OpenPlatform_anubis_dm_financial','anubis_dm','anubis_dm','anubis_dm'],
+]
+
+# Columns definition refer to, https://docs.microsoft.com/en-us/sql/relational-databases/system-tables/dbo-sysjobsteps-transact-sql?view=sql-server-2016
+# etl_job_id, name, cmdexec_success_code, on_success_action, on_success_step_id, on_fail_action, on_fail_step_id, retry_attempts, retry_interval, os_run_priority, subsystem, command, database_name, flags, ssis_package
+etl_job_step_list: [
+[1,'daily_exchange_rate_groups',0,3,0,3,0,0,0,0,'SSIS',null,'master',0,'daily_exchange_rate_groups.dtsx','{"etl_table_map_id(Int32)"=>20,"control_date_diff(Int32)"=>0}'],
+[1,'fact_daily_financial_transactions',0,1,0,2,0,0,0,0,'SSIS',null,'master',0,'catch_up_bytime_mssql.dtsx','{"etl_table_map_id(Int32)"=>9}'],
+
+[2,'fact_financial_jackpot_wins',0,3,0,3,0,0,0,0,'SSIS',null,'master',0,'catch_up_bytime_mysql.dtsx','{"etl_table_map_id(Int32)"=>10}'],
+[2,'backfill_fund_trx_to_pro_jackpot_wins',0,1,0,2,0,0,0,0,'SSIS',null,'master',0,'catch_up_bytime_mysql.dtsx','{"etl_table_map_id(Int32)"=>14}'],
+
+[3,'jackpot_level_configs',0,3,0,3,0,0,0,0,'SSIS',null,'master',0,'catch_up_bytime_mysql_dams2.dtsx','{"etl_table_map_id(Int32)"=>21}'],
+[3,'opsta_players',0,3,0,3,0,0,0,0,'SSIS',null,'master',0,'catch_up_bytime_mysql_dams2.dtsx','{"etl_table_map_id(Int32)"=>28}'],
+[3,'jackpot_configs',0,3,0,3,0,0,0,0,'SSIS',null,'master',0,'catch_up_bytime_mysql_dams2.dtsx','{"etl_table_map_id(Int32)"=>34}'],
+[3,'opsta_report_test_players',0,1,0,2,0,0,0,0,'SSIS',null,'master',0,'catch_up_bytime_mysql_dams2.dtsx','{"etl_table_map_id(Int32)"=>12}'],
+
+[4,'opsta_fact_financial_transactions',0,1,0,2,0,0,0,0,'SSIS',null,'master',0,'catch_up_bytime_mysql_dams2.dtsx','{"etl_table_map_id(Int32)"=>24}'],
+
+[5,'backfill_wms_fund_trx_jackpot_wins',0,3,0,3,0,0,0,0,'SSIS',null,'master',0,'catch_up_bytime_mysql_dams2.dtsx','{"etl_table_map_id(Int32)"=>26}'],
+[5,'opsta_fact_financial_jackpot_wins',0,1,0,2,0,0,0,0,'SSIS',null,'master',0,'catch_up_bytime_mysql_dams2.dtsx','{"etl_table_map_id(Int32)"=>29}'],
+
+[6,'players',0,3,0,3,0,0,0,0,'SSIS',null,'master',0,'catch_up_bytime_mysql_dams2.dtsx','{"etl_table_map_id(Int32)"=>5}'],
+[6,'report_test_players',0,3,0,3,0,0,0,0,'SSIS',null,'master',0,'catch_up_bytime_mysql.dtsx','{"etl_table_map_id(Int32)"=>52}'],
+[6,'test_players',0,1,0,2,0,0,0,0,'SSIS',null,'master',0,'catch_up_bytime_mysql.dtsx','{"etl_table_map_id(Int32)"=>11}'],
+
+[7,'stuck_fund_fact_financial_transactions',0,3,0,3,0,0,0,0,'SSIS',null,'master',0,'stuck_fund_fact_financial_transactions.dtsx','{"etl_table_map_id(Int32)"=>8,"etl_table_map_id_daily(Int32)"=>9,"check_date_process_interval(Int32)"=>7}'],
+[7,'stuck_fund_fact_daily_financial_transactions',0,3,0,3,0,0,0,0,'SSIS',null,'master',0,'stuck_fund_fact_daily_financial_transactions.dtsx','{"etl_table_map_id(Int32)"=>8,"etl_table_map_id_daily(Int32)"=>9,"check_date_process_interval(Int32)"=>7}'],
+[7,'fact_financial_transactions',0,3,0,3,0,0,0,0,'SSIS',null,'master',0,'catch_up_bytime_mysql.dtsx','{"etl_table_map_id(Int32)"=>8}'],
+[7,'player_profile_update',0,3,0,3,0,0,0,0,'SSIS',null,'master',0,'catch_up_bytime_mssql.dtsx','{"etl_table_map_id(Int32)"=>16}'],
+[7,'fact_record_highs',0,1,0,2,0,0,0,0,'SSIS',null,'master',0,'catch_up_bytime_mssql.dtsx','{"etl_table_map_id(Int32)"=>17}'],
+
+[8,'fact_financial_jackpot_wins_batian',0,3,0,3,0,0,0,0,'SSIS',null,'master',0,'catch_up_bytime_mysql.dtsx','{"etl_table_map_id(Int32)"=>30}'],
+[8,'backfill_in_game_jackpot',0,1,0,2,0,0,0,0,'SSIS',null,'master',0,'catch_up_bytime_mysql.dtsx','{"etl_table_map_id(Int32)"=>31}'],
+
+[9,'opsta_product_lines',0,1,0,2,0,0,0,0,'SSIS',null,'master',0,'catch_up_bytime_mysql_dams2.dtsx','{"etl_table_map_id(Int32)"=>25}'],
+
+[10,'fact_bet_summaries',0,3,0,3,0,0,0,0,'SSIS',null,'master',0,'catch_up_bytime_mysql_dams2.dtsx','{"etl_table_map_id(Int32)"=>22}'],
+[10,'fact_daily_bet_summaries',0,3,0,3,0,0,0,0,'SSIS',null,'master',0,'catch_up_bytime_mssql.dtsx','{"etl_table_map_id(Int32)"=>23}'],
+[10,'fact_daily_player_summaries',0,3,0,3,0,0,0,0,'SSIS',null,'master',0,'catch_up_bytime_mssql.dtsx','{"etl_table_map_id(Int32)"=>27}'],
+[10,'stuck_fund_opsta_fact_financial_transactions',0,1,0,2,0,0,0,0,'SSIS',null,'master',0,'stuck_fund_opsta_fact_financial_transactions.dtsx','{"etl_table_map_id(Int32)"=>24,"etl_table_map_id_daily(Int32)"=>9,"check_date_process_interval(Int32)"=>7}']
+]
+
+# Columns definition refer to, https://docs.microsoft.com/en-us/sql/relational-databases/system-tables/dbo-sysschedules-transact-sql?view=sql-server-2016
+# etl_job_id, enabled, freq_type, freq_interval, freq_subday_type, freq_subday_interval, freq_relative_interval, freq_recurrence_factor, active_start_date, active_end_date, active_start_time, active_end_time
+etl_job_schedule:
+  schedule_enabled: 1
+  freq_type: 4
+  freq_interval: 1
+  freq_subday_type: 4
+  freq_subday_interval: 2
+etl_job_schedule_list: [
+[1,0,0,20100101,99991231,100,59],
+[2,0,0,20100101,99991231,200,59],
+[3,0,0,20100101,99991231,300,59],
+[4,0,0,20100101,99991231,400,59],
+[5,0,0,20100101,99991231,500,59],
+[6,0,0,20100101,99991231,600,59],
+[7,0,0,20100101,99991231,700,59],
+[8,0,0,20100101,99991231,800,59],
+[9,0,0,20100101,99991231,900,59],
+[10,0,0,20100101,99991231,1000,59]
+]

@@ -1,0 +1,77 @@
+archive_params: [
+['arc','backup_root','D:\MSSQL\Data_archive','data archive bcp backup root path '],
+['arc','backup_wait_delay','00:00:05','Catch up delay seconds for each bcp execution date loop'],
+['arc','delete_rows_pre_batch','1000','Number of records delete pre batch'],
+['arc','delete_wait_delay','00:00:05','Catch up delay seconds for each delete execution date loop']
+]
+
+databases:
+- arc_database:
+    id: 1
+    name: aino_ndm_staging1
+    state: 0
+- arc_database:
+    id: 2
+    name: aino_nldm_staging1
+    state: 0
+- arc_database:
+    id: 3
+    name: anubis_dm_staging1
+    state: 0
+- arc_database:
+    id: 4
+    name: anubis_ldm_staging1
+    state: 0
+- arc_database:
+    id: 5
+    name: ssis_dmms_staging
+    state: 0
+- arc_database:
+    id: 6
+    name: ssis_ldmms_staging
+    state: 0
+- arc_database:
+    id: 7
+    name: ssis_utils_staging1
+    state: 0
+
+#arc_database_id, schema_name, name, state, date_key, backup_batch_interval_hour, backup_delay_interval_hour, backup_data_start_at, backup_data_end_at, delete_batch_interval_hour, delete_delay_interval_day, delete_data_start_at, delete_data_end_at
+arc_tables: [
+#anubis_dm
+[3,'dbo','fact_bet_summaries',0,'created_at',24,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',24,180,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+
+[3,'dbo','fact_attendant_pays',2,'created_at',24,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',24,180,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[3,'dbo','fact_financial_transactions',2,'created_at',24,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',24,180,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[3,'dbo','fact_jackpot_config_seal_number_logs',1,'created_at',24,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',24,180,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[3,'dbo','fact_meter_slot_wins',2,'created_at',24,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',24,180,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[3,'dbo','fact_player_rating',2,'created_at',24,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',24,180,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[3,'dbo','fact_progressive_jackpot_config_changes',2,'created_at',24,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',24,180,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[3,'dbo','fact_progressive_jackpot_level_adjustments',2,'created_at',24,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',24,180,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[3,'dbo','fact_progressive_jackpot_summaries',2,'created_at',24,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',24,180,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[3,'dbo','fact_progressive_jackpot_wins',2,'created_at',24,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',24,180,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[3,'dbo','fact_property_config_seal_number_logs',1,'created_at',24,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',24,180,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[3,'dbo','fact_property_game_seal_number_logs',1,'created_at',24,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',24,180,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[3,'dbo','fact_slot_master_games',1,'created_at',24,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',24,180,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[3,'dbo','fact_slot_master_machines',1,'created_at',24,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',24,180,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[3,'dbo','jackpot_logical_meters',2,'created_at',24,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',24,180,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+
+
+#anubis_ldm
+[4,'dbo','fact_point_activity',0,'created_at',24,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',24,180,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[4,'dbo','fact_point_liabilities',0,'created_at',24,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',24,180,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[4,'dbo','fact_promotion_transactions',0,'created_at',24,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',24,180,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+
+
+[4,'dbo','fact_account_activities',2,'created_at',24,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',24,180,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[4,'dbo','fact_cage_deposit_withdrawals',2,'created_at',24,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',24,180,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[4,'dbo','fact_exceptions',2,'created_at',24,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',24,180,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[4,'dbo','fact_kiosk_deposit_withdrawals',2,'created_at',24,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',24,180,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[4,'dbo','fact_liabilities',1,'created_at',24,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',24,180,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[4,'dbo','fact_promotion_credit_bet_transactions',2,'created_at',24,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',24,180,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[4,'dbo','fact_unfinished_rounds',1,'created_at',24,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',24,180,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+
+
+
+#ssis_utils
+[7,'dbo','arc_logs',3,'logged_at',1,1,'2017-01-01 00:00:00','2017-01-01 01:00:00',1,100,'2017-01-01 00:00:00','2017-01-01 01:00:00']
+]

@@ -1,0 +1,129 @@
+development:
+  adapter: sqlserver
+  mode: dblib
+  database: ssis_utils_development
+  pool: 5
+  username: ssis
+  password: ssis
+  host: stg0-bi-db01.ias.local
+  port: 1433
+
+test:
+  adapter: sqlserver
+  mode: dblib
+  database: ssis_utils_test
+  pool: 5
+  username: ssis
+  password: ssis
+  host: stg0-bi-db01.ias.local
+  port: 1433
+
+staging0:
+  adapter: sqlserver
+  mode: dblib
+  database: ssis_utils_staging0
+  pool: 5
+  username: ssis
+  password: ssis
+  host: stg0-bi-db01.ias.local
+  port: 1433
+  
+staging1:
+  adapter: sqlserver
+  mode: dblib
+  database: ssis_utils_staging1
+  pool: 5
+  username: ssis
+  password: ssis
+  host: stg1-bi-db01.ias.local
+  port: 1433
+  
+sandbox:
+  adapter: sqlserver
+  mode: dblib
+  database: ssis_utils_sandbox
+  pool: 5
+  username: ssis
+  password: ssis.pa$$w0rd123
+  host: mo-snd-ssrs02.gamesourcecloud.local
+  port: 1433
+
+sandbox0:
+  adapter: sqlserver
+  mode: dblib
+  database: ssis_utils_sandbox0
+  pool: 5
+  username: ssis
+  password: ssis.d07h36357
+  host: ph-snd-ssrs01.laxigames.local
+  port: 1433
+
+sandbox3:
+  adapter: sqlserver
+  mode: dblib
+  database: ssis_utils_sandbox3
+  pool: 5
+  username: ssis
+  password: ssis.d07h36357
+  host: mo-snd-ssrs01.gamesourcecloud.local
+  port: 1433
+  
+sandbox5:
+  adapter: sqlserver
+  mode: dblib
+  database: ssis_utils_sandbox5
+  pool: 5
+  username: ssis
+  password: ssis.d07h36357
+  host: snd5-bi-db01.888iportal.local
+  port: 1433 
+
+sandbox6:
+  adapter: sqlserver
+  mode: dblib
+  database: ssis_utils_sandbox6
+  pool: 5
+  username: ssis
+  password: ssis.d07h36357
+  host: snd6-bi-app01.gamesourcecloud.local
+  port: 1433 
+
+simulation:
+  adapter: sqlserver
+  mode: dblib
+  database: ssis_utils_simulation
+  pool: 5
+  username: ssis
+  password: ssis
+  host: stg0-bi-db01.ias.local
+  port: 1433
+
+production0:
+  adapter: sqlserver
+  mode: dblib
+  database: ssis_utils_production0
+  pool: 5
+  username: ssis
+  password: ssis.d07h36357
+  host: ph-prd-ssrs02.laxigames.local
+  port: 1433
+
+production3:
+  adapter: sqlserver
+  mode: dblib
+  database: ssis_utils_production3
+  pool: 5
+  username: ssis
+  password: ssis.d07h36357
+  host: mo-prd-ssrs01.gamesourcecloud.local
+  port: 1433
+
+production5:
+  adapter: sqlserver
+  mode: dblib
+  database: ssis_utils_production5
+  pool: 5
+  username: ssis
+  password: ssis.d07h36357
+  host: prd5-bi-db01.888iportal.local
+  port: 1433 

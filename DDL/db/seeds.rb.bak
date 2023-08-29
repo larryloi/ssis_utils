@@ -1,0 +1,388 @@
+$env=Rails.env
+
+#$env = ($*[0] && $*[0] =~ /test|development|production0|sandbox0|integration0|staging0|staging|sandbox3|production3|simulation/)? $*[0] : "development"
+arc_database_seed_file = Rails.root.join('db', 'seeds', 'arc_database.yml')
+arc_database_config = YAML::load_file(arc_database_seed_file)[$env]
+
+arc_database_config.each do |conf| 
+    if ArcDatabase.find_by_id(conf["arc_database"]["id"]).nil?
+       ArcDatabase.create(:id => conf["arc_database"]["id"],
+                          :name => conf["arc_database"]["name"],
+                          :state => conf["arc_database"]["state"],
+                          :created_at => Time.now.utc(),
+                          :updated_at => Time.now.utc()
+                      )
+    end
+end
+
+arc_table_list = [
+# aino_ndm
+[1,'dbo','fact_financial_transactions',0,'created_at',1,1,'2017-01-01 00:00:00','2017-01-01 01:00:00',1,400,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[1,'dbo','fact_meter_slot_wins',0,'created_at',1,1,'2017-01-01 00:00:00','2017-01-01 01:00:00',1,400,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+
+#aino_nldm
+[2,'dbo','fact_account_activities',0,'created_at',1,1,'2017-01-01 00:00:00','2017-01-01 01:00:00',1,400,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+
+#anubis_dm
+[3,'dbo','fact_aborted_financial_transactions',2,'created_at',1,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',1,400,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[3,'dbo','fact_attendant_pays',2,'created_at',1,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',1,400,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[3,'dbo','fact_bet_summaries',2,'created_at',1,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',1,400,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[3,'dbo','fact_financial_transactions',2,'created_at',1,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',1,400,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[3,'dbo','fact_meter_slot_wins',2,'created_at',1,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',1,400,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[3,'dbo','fact_player_rating',2,'created_at',1,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',1,400,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[3,'dbo','fact_progressive_jackpot_config_changes',2,'created_at',1,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',1,400,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[3,'dbo','fact_progressive_jackpot_level_adjustments',2,'created_at',1,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',1,400,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[3,'dbo','fact_progressive_jackpot_summaries',2,'created_at',1,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',1,400,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[3,'dbo','fact_progressive_jackpot_wins',2,'created_at',1,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',1,400,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[3,'dbo','fact_record_highs',2,'created_at',1,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',1,400,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[3,'dbo','fact_slot_master_games',2,'created_at',1,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',1,400,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[3,'dbo','fact_slot_master_machines',2,'created_at',1,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',1,400,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+
+#anubis_ldm
+[4,'dbo','fact_account_activities',2,'created_at',1,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',1,400,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[4,'dbo','fact_cage_deposit_withdrawals',2,'created_at',1,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',1,400,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[4,'dbo','fact_exceptions',2,'created_at',1,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',1,400,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[4,'dbo','fact_kiosk_deposit_withdraws',2,'created_at',1,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',1,400,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[4,'dbo','fact_liabilities',2,'created_at',1,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',1,400,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[4,'dbo','fact_point_activity',2,'created_at',1,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',1,400,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[4,'dbo','fact_point_liabilities',2,'created_at',1,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',1,400,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[4,'dbo','fact_promotion_credit_bet_transactions',2,'created_at',1,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',1,400,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[4,'dbo','fact_promotion_transactions',2,'created_at',1,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',1,400,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+[4,'dbo','fact_unfinished_rounds',2,'created_at',1,24,'2017-01-01 00:00:00','2017-01-01 01:00:00',1,400,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+
+#ssis_dmms
+
+#ssis_ldmms
+[6,'dbo','wallet_transactions',0,'created_at',1,1,'2017-01-01 00:00:00','2017-01-01 01:00:00',1,400,'2017-01-01 00:00:00','2017-01-01 01:00:00'],
+
+#ssis_utils
+[7,'dbo','arc_logs',3,'logged_at',1,1,'2017-01-01 00:00:00','2017-01-01 01:00:00',1,100,'2017-01-01 00:00:00','2017-01-01 01:00:00']
+]
+
+arc_table_list.each do |arc_table|
+    if ArcTable.find_by(:arc_database_id => arc_table[0], :schema_name => arc_table[1], :name => arc_table[2]).nil?
+       ArcTable.create(:arc_database_id => arc_table[0],
+                       :schema_name => arc_table[1],
+                       :name => arc_table[2],
+                       :state => arc_table[3],
+                       :date_key => arc_table[4],
+                       :backup_batch_interval_hour => arc_table[5],
+                       :backup_delay_interval_hour => arc_table[6],
+                       :backup_data_start_at => arc_table[7],
+                       :backup_data_end_at => arc_table[8],
+                       :delete_batch_interval_hour => arc_table[9],
+                       :delete_delay_interval_day => arc_table[10],
+                       :delete_data_start_at => arc_table[11],
+                       :delete_data_end_at => arc_table[12],
+                       :created_at => Time.now.utc(),
+                       :updated_at => Time.now.utc()
+                      )
+    end
+end
+
+
+#system_parameter_seed_file = Rails.root.join('db', 'seeds', 'system_parameter.yml')
+#system_parameter_config = YAML::load_file(system_parameter_seed_file)[$env]
+
+
+#system_parameter_config.each do |conf|
+#    if SystemParameter.find_by(:feature => conf["sys_param"]["feature"], :parameter => conf["sys_param"]["parameter"]).nil?
+#       SystemParameter.create(:feature => conf["sys_param"]["feature"],
+#                              :parameter => conf["sys_param"]["parameter"],
+#                              :value => conf["sys_param"]["value"],
+#                              :description => conf["sys_param"]["description"],
+#                              :created_at => Time.now.utc(),
+#                              :updated_at => Time.now.utc()
+#                      )
+#    end
+#end
+
+system_param_list = [
+['arc','environment',$env,'Environment'],
+['arc','backup_root','D:\MSSQL\Data_archive','data archive bcp backup root path '],
+['arc','backup_wait_delay','00:00:05','Catch up delay seconds for each bcp execution date loop'],
+['arc','delete_rows_pre_batch','200','Number of records delete pre batch'],
+['arc','delete_wait_delay','00:00:05','Catch up delay seconds for each delete execution date loop']
+]
+
+system_param_list.each do |sys_param|
+    if SystemParameter.find_by(:feature => sys_param[0], :parameter => sys_param[1]).nil?
+       SystemParameter.create(:feature => sys_param[0],
+                              :parameter =>  sys_param[1],
+                              :value => sys_param[2],
+                              :description => sys_param[3],
+                              :created_at => Time.now.utc(),
+                              :updated_at => Time.now.utc()
+                             )
+    end
+end
+
+
+util_cmd_list = [
+['create_svc_path.bat','Batch script for creating service paths','db/seeds/create_svc_path.bat'],
+['exp_rdl.sql','SQL script that exporting report definition by particular report path and report name','db/seeds/exp_rdl.sql'],
+['ftp_to_sv.bat','Batch script for ftp put report related files to SV server','db/seeds/ftp_to_sv.bat'],
+['exp_dtsx.bat','Batch script for exporting ssis catalog project','db/seeds/exp_dtsx.bat'],
+['exp_sp.sql','SQL script that exporting stored procedure by particular DB','db/seeds/exp_sp.sql']
+]
+UtilCmd.delete_all
+util_cmd_list.each do |util_cmd|
+#create_svc_path_file = Rails.root.join('db', 'seeds', 'create_svc_path.bat')
+   file = Rails.root.join(util_cmd[2])
+   data = File.read(file)
+      if UtilCmd.find_by_name(util_cmd[0]).nil?
+         UtilCmd.create(:name => util_cmd[0],
+                        :description => util_cmd[1],
+                        :cmd_text => data,
+                        :created_at => Time.now.utc(),
+                        :updated_at => Time.now.utc()
+                       )
+   end
+end
+
+
+etl_job_seed_file = Rails.root.join('db', 'seeds', 'etl_job.yml')
+etl_job_config = YAML::load_file(etl_job_seed_file)[$env]
+sql_agent_login = etl_job_config["login"]
+freq_subday_type = etl_job_config["etl_job_schedule"]["freq_subday_type"]
+freq_subday_interval = etl_job_config["etl_job_schedule"]["freq_subday_interval"]
+enabled = etl_job_config["etl_job_schedule"]["enabled"]
+freq_type = etl_job_config["etl_job_schedule"]["freq_type"]
+freq_interval = etl_job_config["etl_job_schedule"]["freq_interval"]
+
+# Columns definition refer to, https://docs.microsoft.com/en-us/sql/relational-databases/system-tables/dbo-sysjobs-transact-sql?view=sql-server-2016
+# id, name, enabled, notify_level_eventlog, notify_level_email, notify_level_netsend, notify_level_page, delete_level, description, category_name, owner_login_name, ssis_folder, ssis_project
+etl_job_list = [
+[1,'Global-ExistPlatform_anubis_dm_domain',0,0,0,0,0,0,'Global-ExistPlatform_anubis_dm_domain','anubis_dm',sql_agent_login,'anubis_dm','anubis_dm'],
+[2,'Global-ExistPlatform_anubis_dm_financial',0,0,0,0,0,0,'Global-ExistPlatform_anubis_dm_financial','anubis_dm',sql_agent_login,'anubis_dm','anubis_dm'],
+[3,'Global-ExistPlatform_anubis_dm_jackpot',0,0,0,0,0,0,'Global-ExistPlatform_anubis_dm_jackpot','anubis_dm',sql_agent_login,'anubis_dm','anubis_dm'],
+[4,'Global-Openplatform_anubis_dm_domain',0,0,0,0,0,0,'Global-Openplatform_anubis_dm_domain','anubis_dm',sql_agent_login,'anubis_dm','anubis_dm'],
+[5,'Global-Openplatform_anubis_dm_financial',0,0,0,0,0,0,'Global-Openplatform_anubis_dm_financial','anubis_dm',sql_agent_login,'anubis_dm','anubis_dm'],
+[6,'Global-Openplatform_anubis_dm_jackpot',0,0,0,0,0,0,'Global-Openplatform_anubis_dm_jackpot','anubis_dm',sql_agent_login,'anubis_dm','anubis_dm'],
+[7,'Online-ExistPlatform_anubis_dm_domain',0,0,0,0,0,0,'Online-ExistPlatform_anubis_dm_domain','anubis_dm',sql_agent_login,'anubis_dm','anubis_dm'],
+[8,'Online-ExistPlatform_anubis_dm_financial',0,0,0,0,0,0,'Online-ExistPlatform_anubis_dm_financial','anubis_dm',sql_agent_login,'anubis_dm','anubis_dm'],
+
+[9,'Landbased-OpenPlatform_anubis_ldm_cage_domain_01',0,0,0,0,0,0,'Landbased-OpenPlatform_anubis_ldm_cage_domain_01','anubis_ldm',sql_agent_login,'anubis_ldm','anubis_ldm'],
+[10,'Landbased-OpenPlatform_anubis_ldm_cage_transaction_01',0,0,0,0,0,0,'Landbased-OpenPlatform_anubis_ldm_cage_transaction_01','anubis_ldm',sql_agent_login,'anubis_ldm','anubis_ldm'],
+
+[11,'Online-ExistPlatform_anubis_dm_jackpot',0,0,0,0,0,0,'Online-ExistPlatform_anubis_dm_jackpot','anubis_dm',sql_agent_login,'anubis_dm','anubis_dm'],
+[12,'Online-OpenPlatform_anubis_dm_domain',0,0,0,0,0,0,'Online-OpenPlatform_anubis_dm_domain','anubis_dm',sql_agent_login,'anubis_dm','anubis_dm'],
+[13,'Online-OpenPlatform_anubis_dm_financial',0,0,0,0,0,0,'Online-OpenPlatform_anubis_dm_financial','anubis_dm',sql_agent_login,'anubis_dm','anubis_dm'],
+[14,'Landbase-OpenPlatform_anubis_dm_domain',0,0,0,0,0,0,'Landbase-OpenPlatform_anubis_dm_domain','anubis_dm',sql_agent_login,'anubis_dm','anubis_dm'],
+[15,'Landbase-OpenPlatform_anubis_dm_financial01',0,0,0,0,0,0,'Landbase-OpenPlatform_anubis_dm_financial01','anubis_dm',sql_agent_login,'anubis_dm','anubis_dm'],
+[16,'Landbase-OpenPlatform_anubis_dm_financial02',0,0,0,0,0,0,'Landbase-OpenPlatform_anubis_dm_financial02','anubis_dm',sql_agent_login,'anubis_dm','anubis_dm'],
+[17,'Landbase-OpenPlatform_anubis_dm_jackpot',0,0,0,0,0,0,'Landbase-OpenPlatform_anubis_dm_jackpot','anubis_dm',sql_agent_login,'anubis_dm','anubis_dm'],
+[18,'Landbase-OpenPlatform_anubis_dm_machines',0,0,0,0,0,0,'Landbase-OpenPlatform_anubis_dm_machines','anubis_dm',sql_agent_login,'anubis_dm','anubis_dm'],
+[19,'Landbased-OpenPlatform_anubis_ldm_cage_domain_02',0,0,0,0,0,0,'Landbased-OpenPlatform_anubis_ldm_cage_domain_02','anubis_ldm',sql_agent_login,'anubis_ldm','anubis_ldm'],
+[20,'Landbased-OpenPlatform_anubis_ldm_cage_transaction_02',0,0,0,0,0,0,'Landbased-OpenPlatform_anubis_ldm_cage_transaction_02','anubis_ldm',sql_agent_login,'anubis_ldm','anubis_ldm'],
+[21,'Landbase-OpenPlatform_anubis_dm_event_logs',0,0,0,0,0,0,'Landbase-OpenPlatform_anubis_dm_event_logs','anubis_dm',sql_agent_login,'anubis_dm','anubis_dm'],
+[22,'Landbased-OpenPlatform_anubis_ldm_cage_transaction_03',0,0,0,0,0,0,'Landbased-OpenPlatform_anubis_ldm_cage_transaction_03','anubis_ldm',sql_agent_login,'anubis_ldm','anubis_ldm']
+]
+EtlJob.delete_all
+etl_job_list.each do |etl_job|
+EtlJob.create(:id => etl_job[0],
+              :name => etl_job[1],
+              :enabled => etl_job[2],
+              :notify_level_eventlog => etl_job[3],
+              :notify_level_email => etl_job[4],
+              :notify_level_netsend => etl_job[5],
+              :notify_level_page => etl_job[6],
+              :delete_level => etl_job[7],
+              :description => etl_job[8],
+              :category_name => etl_job[9],
+              :owner_login_name => etl_job[10],
+              :ssis_folder => etl_job[11],
+              :ssis_project => etl_job[12],
+              :created_at => Time.now.utc(),
+              :updated_at => Time.now.utc()
+              )
+end
+
+# Columns definition refer to, https://docs.microsoft.com/en-us/sql/relational-databases/system-tables/dbo-sysjobsteps-transact-sql?view=sql-server-2016
+# etl_job_id, name, cmdexec_success_code, on_success_action, on_success_step_id, on_fail_action, on_fail_step_id, retry_attempts, retry_interval, os_run_priority, subsystem, command, database_name, flags, ssis_package
+etl_job_step_list = [
+[2,'daily_exchange_rate_groups',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'daily_exchange_rate_groups.dtsx',{'etl_table_map_id(Int32)'=>20,'control_date_diff(Int32)'=>0}],
+[2,'fact_daily_financial_transactions',0,1,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mssql.dtsx',{'etl_table_map_id(Int32)'=>9}],
+
+[3,'fact_financial_jackpot_wins',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql.dtsx',{'etl_table_map_id(Int32)'=>10}],
+[3,'backfill_fund_trx_to_pro_jackpot_wins',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql.dtsx',{'etl_table_map_id(Int32)'=>14}],
+
+[4,'jackpot_level_configs',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>21}],
+[4,'opsta_players',0,1,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>28}],
+[4,'jackpot_configs',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>34}],
+[4,'opsta_report_test_players',0,1,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>12}],
+
+[5,'opsta_fact_financial_transactions',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>24}],
+
+[6,'backfill_wms_fund_trx_jackpot_wins',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>26}],
+[6,'opsta_fact_financial_jackpot_wins',0,1,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>29}],
+
+[7,'players',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql.dtsx',{'etl_table_map_id(Int32)'=>5}],
+[7,'promotions',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql.dtsx',{'etl_table_map_id(Int32)'=>6}],
+[7,'promotion_types',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql.dtsx',{'etl_table_map_id(Int32)'=>7}],
+[7,'report_test_players',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql.dtsx',{'etl_table_map_id(Int32)'=>52}],
+[7,'test_players',0,1,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql.dtsx',{'etl_table_map_id(Int32)'=>11}],
+
+[8,'stuck_fund_fact_financial_transactions',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'stuck_fund_fact_financial_transactions.dtsx',{'etl_table_map_id(Int32)'=>8,'etl_table_map_id_daily(Int32)'=>9,'check_date_process_interval(Int32)'=>7}],
+[8,'stuck_fund_fact_daily_financial_transactions',0,1,0,2,0,0,0,0,'SSIS',nil,'master',0,'stuck_fund_fact_daily_financial_transactions.dtsx',{'etl_table_map_id(Int32)'=>8,'etl_table_map_id_daily(Int32)'=>9,'check_date_process_interval(Int32)'=>7}],
+[8,'fact_financial_transactions',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql.dtsx',{'etl_table_map_id(Int32)'=>8}],
+[8,'player_profile_update',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mssql.dtsx',{'etl_table_map_id(Int32)'=>16}],
+[8,'fact_record_highs',0,1,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mssql.dtsx',{'etl_table_map_id(Int32)'=>17}],
+
+[9,'accounting_dates',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>1}],
+[9,'shifts',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>3}],
+[9,'cage_players',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>2}],
+[9,'opsta_fact_system_users',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>10}],
+[9,'report_test_players',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>24}],
+
+[10,'fact_cage_deposit_withdrawals',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>9}],
+[10,'fact_unfinished_rounds',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>16}],
+[10,'fact_exceptions',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>8}],
+[10,'opsta_wallet_transactions_from_cashier_trx',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>17}],
+[10,'opsta_wallet_transactions_from_round_trx',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>25}],
+[10,'fact_liabilities',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mssql.dtsx',{'etl_table_map_id(Int32)'=>19}],
+[10,'fact_kiosk_deposit_withdraws',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>30}],
+
+[11,'fact_financial_jackpot_wins_batian',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql.dtsx',{'etl_table_map_id(Int32)'=>30}],
+[11,'backfill_in_game_jackpot',0,1,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql.dtsx',{'etl_table_map_id(Int32)'=>31}],
+
+[12,'opsta_product_lines',0,1,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>25}],
+
+[13,'fact_bet_summaries',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>22}],
+[13,'fact_daily_bet_summaries',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mssql.dtsx',{'etl_table_map_id(Int32)'=>23}],
+[13,'fact_daily_player_summaries',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mssql.dtsx',{'etl_table_map_id(Int32)'=>27}],
+[13,'stuck_fund_opsta_fact_financial_transactions',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'stuck_fund_opsta_fact_financial_transactions.dtsx',{'etl_table_map_id(Int32)'=>24,'etl_table_map_id_daily(Int32)'=>9,'check_date_process_interval(Int32)'=>7}],
+
+[14,'machine_locations',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>1}],
+[14,'machines',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_byid_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>2}],
+[14,'zones',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>3}],
+[14,'machine_types',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>33}],
+[14,'jackpot_slips',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>4}],
+[14,'gov_stamps',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_byid_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>46}],
+[14,'serial_numbers',0,1,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_byid_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>47}],
+
+[15,'opsta_fact_meter_slot_wins',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>36}],
+[15,'fact_daily_meter_slot_wins',0,1,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mssql.dtsx',{'etl_table_map_id(Int32)'=>37}],
+
+[16,'opsta_fact_attendant_pays',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>13}],
+[16,'fact_daily_machine_performance',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>49}],
+[16,'fact_player_rating',0,1,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_byid_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>48}],
+
+[17,'opsta_fact_progressive_jackpot_config_changes',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_byid_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>35}],
+[17,'batian_fact_progressive_jackpot_summaries',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>32}],
+[17,'kilimanjaro_fact_progressive_jackpot_summaries',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>50}],
+[17,'opsta_backfill_wms_fund_trx_pro_jackpot_wins',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>40}],
+[17,'opsta_fact_progressive_jackpot_wins',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>38}],
+[17,'opsta_fact_progressive_jackpot_level_adjustments',0,1,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_byid_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>51}],
+
+[18,'fact_slot_master_machines',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_byid_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>15}],
+[18,'fact_daily_machine_status',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mssql.dtsx',{'etl_table_map_id(Int32)'=>19}],
+[18,'fact_slot_master_games',0,1,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_byid_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>41}],
+
+[19,'machines',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>5}],
+[19,'machine_locations',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>6}],
+[19,'zones',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>4}],
+[19,'machine_types',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>14}],
+[19,'shift_types',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>15}],
+[19,'payment_methods',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>26}],
+[19,'source_of_funds',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>27}],
+
+[20,'fact_promotion_credit_bet_trx',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>7}],
+[20,'fact_promotion_transactions_from_mp_player_transactions',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>18}],
+[20,'fact_promotion_transactions_from_mp_requester_transactions',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>28}],
+[20,'fact_promotion_transactions_from_cwms_cashier_transactions',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>29}],
+
+[21,'sv_change_logs',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_byid_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>42}],
+[21,'ap_change_logs',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_byid_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>43}],
+[21,'sm_change_histories',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_byid_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>44}],
+[21,'approval_logs',0,1,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_byid_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>45}],
+
+[22,'fact_account_activities_from_cashier_trx',0,3,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>22}],
+[22,'fact_account_activities_from_round_trx',0,1,0,2,0,0,0,0,'SSIS',nil,'master',0,'catch_up_bytime_mysql_dams2.dtsx',{'etl_table_map_id(Int32)'=>23}]
+]
+
+EtlJobStep.delete_all
+EtlJobStepParam.delete_all
+ActiveRecord::Base.connection.execute("DBCC CHECKIDENT ('[etl_job_steps]', RESEED, 0); ")
+ActiveRecord::Base.connection.execute("DBCC CHECKIDENT ('[etl_job_step_params]', RESEED, 0); ")
+etl_job_step_list.each do |etl_job_step|
+#   EtlJobStep.create(:id => etl_job_step[0],
+   new_step = EtlJobStep.create(
+                  :etl_job_id => etl_job_step[0],
+                  :name => etl_job_step[1],
+                  :cmdexec_success_code => etl_job_step[2],
+                  :on_success_action => etl_job_step[3],
+                  :on_success_step_id => etl_job_step[4],
+                  :on_fail_action => etl_job_step[5],
+                  :on_fail_step_id => etl_job_step[6],
+                  :retry_attempts => etl_job_step[7],
+                  :retry_interval => etl_job_step[8],
+                  :os_run_priority => etl_job_step[9],
+                  :subsystem => etl_job_step[10],
+                  :command => etl_job_step[11],
+                  :database_name => etl_job_step[12],
+                  :flags => etl_job_step[13],
+                  :ssis_package => etl_job_step[14],
+                  :created_at => Time.now.utc(),
+                  :updated_at => Time.now.utc()
+                 )
+   unless etl_job_step[15].nil?
+      etl_job_step[15].each do |k,v|
+      EtlJobStepParam.create(:etl_job_step_id => new_step[:id],
+                             :parameter => k,
+                             :value => v,
+                             :created_at => Time.now.utc(),
+                             :updated_at => Time.now.utc()
+                            )
+      end
+   end
+end
+
+
+# Columns definition refer to, https://docs.microsoft.com/en-us/sql/relational-databases/system-tables/dbo-sysschedules-transact-sql?view=sql-server-2016
+# etl_job_id, enabled, freq_type, freq_interval, freq_subday_type, freq_subday_interval, freq_relative_interval, freq_recurrence_factor, active_start_date, active_end_date, active_start_time, active_end_time
+etl_job_schedule_list = [
+[1,enabled,freq_type,freq_interval,freq_subday_type,freq_subday_interval,0,0,20100101,99991231,100,59],
+[2,enabled,freq_type,freq_interval,freq_subday_type,freq_subday_interval,0,0,20100101,99991231,200,59],
+[3,enabled,freq_type,freq_interval,freq_subday_type,freq_subday_interval,0,0,20100101,99991231,300,59],
+[4,enabled,freq_type,freq_interval,freq_subday_type,freq_subday_interval,0,0,20100101,99991231,400,59],
+[5,enabled,freq_type,freq_interval,freq_subday_type,freq_subday_interval,0,0,20100101,99991231,500,59],
+[6,enabled,freq_type,freq_interval,freq_subday_type,freq_subday_interval,0,0,20100101,99991231,600,59],
+[7,enabled,freq_type,freq_interval,freq_subday_type,freq_subday_interval,0,0,20100101,99991231,700,59],
+[8,enabled,freq_type,freq_interval,freq_subday_type,freq_subday_interval,0,0,20100101,99991231,800,59],
+[9,enabled,freq_type,freq_interval,freq_subday_type,freq_subday_interval,0,0,20100101,99991231,900,59],
+[10,enabled,freq_type,freq_interval,freq_subday_type,freq_subday_interval,0,0,20100101,99991231,1000,59],
+[11,enabled,freq_type,freq_interval,freq_subday_type,freq_subday_interval,0,0,20100101,99991231,100,59],
+[12,enabled,freq_type,freq_interval,freq_subday_type,freq_subday_interval,0,0,20100101,99991231,200,59],
+[13,enabled,freq_type,freq_interval,freq_subday_type,freq_subday_interval,0,0,20100101,99991231,300,59],
+[14,enabled,freq_type,freq_interval,freq_subday_type,freq_subday_interval,0,0,20100101,99991231,400,59],
+[15,enabled,freq_type,freq_interval,freq_subday_type,freq_subday_interval,0,0,20100101,99991231,500,59],
+[16,enabled,freq_type,freq_interval,freq_subday_type,freq_subday_interval,0,0,20100101,99991231,600,59],
+[17,enabled,freq_type,freq_interval,freq_subday_type,freq_subday_interval,0,0,20100101,99991231,700,59],
+[18,enabled,freq_type,freq_interval,freq_subday_type,freq_subday_interval,0,0,20100101,99991231,800,59],
+[19,enabled,freq_type,freq_interval,freq_subday_type,freq_subday_interval,0,0,20100101,99991231,900,59],
+[20,enabled,freq_type,freq_interval,freq_subday_type,freq_subday_interval,0,0,20100101,99991231,1000,59],
+[21,enabled,freq_type,freq_interval,freq_subday_type,freq_subday_interval,0,0,20100101,99991231,100,59],
+[22,enabled,freq_type,freq_interval,freq_subday_type,freq_subday_interval,0,0,20100101,99991231,200,59]
+]
+EtlJobSchedule.delete_all
+etl_job_schedule_list.each do |etl_job_schedule|
+EtlJobSchedule.create(
+              :etl_job_id => etl_job_schedule[0],
+              :enabled => etl_job_schedule[1],
+              :freq_type => etl_job_schedule[2],
+              :freq_interval => etl_job_schedule[3],
+              :freq_subday_type => etl_job_schedule[4],
+              :freq_subday_interval => etl_job_schedule[5],
+              :freq_relative_interval => etl_job_schedule[6],
+              :freq_recurrence_factor => etl_job_schedule[7],
+              :active_start_date => etl_job_schedule[8],
+              :active_end_date => etl_job_schedule[9],
+              :active_start_time => etl_job_schedule[10],
+              :active_end_time => etl_job_schedule[11],
+              :created_at => Time.now.utc(),
+              :updated_at => Time.now.utc()
+              )
+end
+
+
